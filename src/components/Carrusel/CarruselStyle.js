@@ -30,6 +30,14 @@ const CarruselStyle = styled.div`
         justify-content: center;
         text-align: center;
     }
+    @-moz-document url-prefix() {
+        label {
+        background-color: rgba(255,255,255,0.5);
+        bottom: 0px;
+        text-decoration: underline;
+        text-align: center;
+        }
+    }
 
     .slider :first-child {
         opacity: 1;

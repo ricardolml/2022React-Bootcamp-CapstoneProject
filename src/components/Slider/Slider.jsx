@@ -1,15 +1,14 @@
 import React from 'react'
 import SliderStyle from './SliderStyle';
 import categoriesData from '../../mocks/en-us/product-categories.json';
+import Category from '../Category/Category';
+
 
 const Slider = () => {
     const { results } =  categoriesData;
 
-    const cat = results.map( categorie => (
-        <div key={categorie.id} className='info'>
-            <img src={categorie.data.main_image.url} alt="" />
-            <label htmlFor="" className='descript'>{categorie.data.name}</label>
-        </div>
+    const cat = results.map( category => (
+        <Category key={category.id} category={category} />
     ));
 
     return (

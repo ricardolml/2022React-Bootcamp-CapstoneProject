@@ -1,5 +1,6 @@
 import { Footer, Header } from './components';
-import HomePage from './pages/home/HomePage';
+// import {  ProductListPage } from './pages';
+import { HomePage, ProductListPage } from './pages';
 import { Container, GlobalStyle } from './styles';
 
 function App() {
@@ -9,11 +10,12 @@ function App() {
     return (
         <div className="App">
             <GlobalStyle />
+            <Header />
             <Container container>
-                <Header />
                 <HomePage />
-                <Footer />
+                {/* <ProductListPage /> */}
             </Container>
+            <Footer />
 
         </div>
     );
