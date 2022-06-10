@@ -7,13 +7,13 @@ const Card =  styled.div`
     border-radius: 5px;
     box-shadow: 0px;
     box-shadow: 5px 5px 5px ${colors.Gray[200]};
-    min-height: 320px;
     position: relative;
-    width: 18rem;
+    max-width: 200px;
     img{
         border-radius: 5px;
+        position: relative;
+        display: flex;
         width: 100%;
-        max-height: 200px;
         object-fit: cover;
     }
 
@@ -28,7 +28,6 @@ const Card =  styled.div`
         .category{
             color: ${ colors.Gray[400] };
         }
-
         
         .content{
             display: flex;

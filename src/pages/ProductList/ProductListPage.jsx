@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ContentProductList } from '../../styles';
-import styles from '../../styles/styles.module.css';
-import HomePage from '../home/HomePage';
 import categoriesData from '../../mocks/en-us/product-categories.json';
-import { Category } from '../../components';
+import productsData from '../../mocks/en-us/featured-products.json';
+import { Category, ProductList } from '../../components';
 const ProductListPage = () => {
 
     const categoriesArr = categoriesData.results.map(category => ({
@@ -12,6 +11,9 @@ const ProductListPage = () => {
     }));
 
     const [categories, setCategories] = useState(categoriesArr);
+    const [categoriesSelect, setCategoriesSelect] = useState([]);
+    const [products, setProducts] = useState([]);
+
 
     const listCategories = categories.map((category, index) => (
         <li
@@ -23,14 +25,50 @@ const ProductListPage = () => {
         </li>
     ));
 
+    // const filter = () => {
+    //     if (categoriesSelect.length === 0) { setProducts(productsData.results); return; }
+    //     const arrProductos = [];
+    //     categoriesSelect.forEach(category => {
+    //         const filterProductos = productsData.results.filter(products =>
+    //             products.data.category.id === category
+    //         );
+    //         arrProductos.push(filterProductos);
+    //         console.log(filterProductos);
+    //     });
+    //     setProducts(arrProductos.flat());
+    // }
+
+    useEffect(() => {
+        if (categoriesSelect.length === 0) { setProducts(productsData.results); return; }
+        const arrProductos = [];
+        categoriesSelect.forEach(category => {
+            const filterProductos = productsData.results.filter(products =>
+                products.data.category.id === category
+            );
+            arrProductos.push(filterProductos);
+            console.log(filterProductos);
+        });
+        setProducts(arrProductos.flat());
+    }, [categoriesSelect])
+
+
     const handleSelectCategory = (id, index) => {
         const newListCategories = [...categories];
         newListCategories[index].selected = !newListCategories[index].selected;
-        setCategories(newListCategories)
+        setCategories(newListCategories);
+
+        if (newListCategories[index].selected) {
+            setCategoriesSelect([...categoriesSelect, id]);
+            return;
+        }
+
+        const newArreCategories = categoriesSelect.filter((idCategory) => idCategory !== id);
+        setCategoriesSelect(newArreCategories);
     }
+    
     return (
         <ContentProductList>
-            <div className={`${styles['col-2']} slider`}>
+            <div className={`slider`}>
                 <div className='categories'>
                     Categories
                     <ul>
@@ -38,8 +76,8 @@ const ProductListPage = () => {
                     </ul>
                 </div>
             </div>
-            <div className={`${styles['col-10']} productList `}>
-                <HomePage />
+            <div className={`productList `}>
+                <ProductList productsList={products} title='Products' />
             </div>
         </ContentProductList>
     )

@@ -3,8 +3,7 @@ import ProductCard from '../ProductCard/ProductCard';
 import ProductListStyle from './ProductListStyle'
 
 const ProductList = ({ productsList, title }) => {
-
-    const products = productsList.results.map(product => (
+    const products = productsList.map(product => (
         <div key={product.id}>
             <ProductCard product={product} />
         </div>

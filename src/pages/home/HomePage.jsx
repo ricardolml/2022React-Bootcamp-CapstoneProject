@@ -7,7 +7,7 @@ const HomePage = () => {
         <>
             <Carrusel />
             <Slider />
-            <ProductList productsList={feactureProducts} title='Featured Products'/>
+            <ProductList productsList={feactureProducts.results} title='Featured Products'/>
         </>
     )
 }

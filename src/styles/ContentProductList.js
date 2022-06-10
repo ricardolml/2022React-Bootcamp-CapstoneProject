@@ -3,11 +3,12 @@ import { colors } from "./_variables";
 
 const ContentProductList = styled.div`    
     display: flex;
+    gap: 20px;
     .slider{
         border-right: 2px solid ${colors.Gray[300]};
+        min-width: 20%;
         .categories{
             position: fixed;
-            /* padding-top: 15px; */
             ul{
                 padding-left: 10px;
                 list-style: none;
@@ -16,14 +17,15 @@ const ContentProductList = styled.div`
                 }
                 li{
                     label{
+                        display: flex;
                         cursor: pointer;
                         font-size: 14px;
-                        padding-left: 10px;
+                        /* padding-left: 10px; */
                     }
                     border-radius: 5px;
                     margin-bottom: 5px;
                     padding: 5px;
-                    margin: px;
+                    /* margin: px; */
                     
                     
                 }
@@ -34,6 +36,43 @@ const ContentProductList = styled.div`
         background-color: ${colors.Gray[200]};
     }
     .productList{
+    }
+
+    @media (max-width: 800px ) {
+        flex-direction: column;
+        gap: 5px;
+        .slider{
+            width: 100%;
+            border-right: 0px;
+            .categories{                
+                position: relative;
+                ul{
+                    border-radius: 5px;
+                    display: flex;
+                    justify-content: space-around;
+                    gap: 5px;
+                    padding: 10px;
+                    background-color: ${ colors.Gray[200] };
+                    
+                    label{
+                        padding: 3px;
+                        width: 100%;
+                    }
+                
+                }
+            }
+            
+        }
+        
+        .productList{
+            overflow-y: scroll;
+            padding-bottom: 100px;
+            max-height: 60vh;
+            /* margin-top: 30px; */
+        }
+        .active{
+            background-color: ${colors.Gray[300]};
+        }
     }
 `
 export default ContentProductList;
