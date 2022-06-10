@@ -1,5 +1,4 @@
 import { Footer, Header } from './components';
-// import {  ProductListPage } from './pages';
 import { HomePage, ProductListPage } from './pages';
 import { Container, GlobalStyle } from './styles';
 
@@ -12,8 +11,8 @@ function App() {
             <GlobalStyle />
             <Header />
             <Container container>
-                <HomePage />
-                {/* <ProductListPage /> */}
+                {/* <HomePage /> */}
+                <ProductListPage />
             </Container>
             <Footer />
 

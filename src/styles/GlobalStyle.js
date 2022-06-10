@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
         background-color: ${ colors.Gray[50] } ;
 
         margin: 0;
-        padding: 10px;
+        padding: 10px 10px 0px 10px;
     }
 
     hr{

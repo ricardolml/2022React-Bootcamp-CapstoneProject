@@ -8,9 +8,8 @@ const Card =  styled.div`
     box-shadow: 0px;
     box-shadow: 5px 5px 5px ${colors.Gray[200]};
     min-height: 320px;
-    /* padding: 10px; */
     position: relative;
-
+    width: 18rem;
     img{
         border-radius: 5px;
         width: 100%;
@@ -40,8 +39,7 @@ const Card =  styled.div`
     }
 
     @media (max-width: ${ max_widths.sm }) {
-        max-height: 450px;
-        
+        width: 100%;        
         img{
             max-height: 280px;
         }

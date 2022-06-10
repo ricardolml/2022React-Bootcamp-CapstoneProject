@@ -7,13 +7,15 @@ import Category from '../Category/Category';
 const Slider = () => {
     const { results } =  categoriesData;
 
-    const cat = results.map( category => (
-        <Category key={category.id} category={category} />
+    const categories = results.map( category => (
+        <div className='info' key={category.id}>
+            <Category category={category} />
+        </div>
     ));
 
     return (
         <SliderStyle>
-            { cat }
+            {categories}
         </SliderStyle>
     )
 }
