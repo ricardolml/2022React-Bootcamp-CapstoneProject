@@ -1,30 +1,25 @@
 import { useState } from "react";
 
 
-const useCategoriesSelected = (categoriesData) => {
+const useCategoriesSelected = () => {
 
-    const categoriesArr = categoriesData.results.map(category => ({
-        ...category,
-        selected: false,
-    }));
-
-    const [categories, setCategories] = useState(categoriesArr);
     const [categoriesSelect, setCategoriesSelect] = useState([]);
 
-    const handleSelectCategory = (index) => {
-        const newListCategories = [...categories];
-        newListCategories[index].selected = !newListCategories[index].selected;
-        setCategories(newListCategories);
+    const handleSelectCategory = (e, id) => {
+        const select = e.target;
 
-        const categoriesSelectList = newListCategories.filter( 
-            category => category.selected === true
-        ).map( category => category.id );
-        setCategoriesSelect(categoriesSelectList);       
-        
+        if (select.className === 'active') {
+            select.className = '';
+
+            const newArreCategories = categoriesSelect.filter((idCategory) => idCategory !== id);
+            setCategoriesSelect(newArreCategories);
+        } else {
+            select.className = 'active';
+            setCategoriesSelect([...categoriesSelect, id]);
+        }
     }
 
-    return{
-        categories ,
+    return {
         categoriesSelect,
         handleSelectCategory,
     }

@@ -1,27 +1,25 @@
 import React from 'react'
 import { ContentProductList } from '../../styles';
 import categoriesData from '../../mocks/en-us/product-categories.json';
-import productsData from '../../mocks/en-us/featured-products.json';
-import { Category, Loading, ProductList } from '../../components';
-import useFilterProducts from '../../utils/hooks/useFilterProducts';
+import { Loading, ProductList } from '../../components';
+import useProducts from '../../utils/hooks/useProducts';
 import useCategoriesSelected from '../../utils/hooks/useCategoriesSelected';
+
 const ProductListPage = () => {
 
     const {
         handleSelectCategory,
-        categories,
         categoriesSelect,
-    } = useCategoriesSelected(categoriesData);
+    } = useCategoriesSelected();
 
-    const { productsState } = useFilterProducts(productsData.results, categoriesSelect);
-// console.log(productsState);
-    const listCategories = categories.map((category, index) => (
+    const { productsState } = useProducts(categoriesSelect);
+    // console.log(productsState);
+    const listCategories = categoriesData.results.map((category) => (
         <li
             key={category.id}
-            className={category.selected ? 'active' : ''}
-            onClick={() => handleSelectCategory(index)}
+            onClick={ (e) => handleSelectCategory(e, category.id)}
         >
-            <Category category={category} />
+            { category.data.name }
         </li>
     ));
 
@@ -29,7 +27,7 @@ const ProductListPage = () => {
         <ContentProductList>
             <div className={`slider`}>
                 <div className='categories'>
-                    Categories
+                    Categories Filter
                     <ul>
                         {listCategories}
                     </ul>
@@ -46,7 +44,7 @@ const ProductListPage = () => {
                         ?  
                             <ProductList productsList={productsState.products} />
                         :
-                            'No hay datos'
+                            'Ops... No data'
                 }
             </div>
         </ContentProductList>

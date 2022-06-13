@@ -25,6 +25,7 @@ const ContentProductList = styled.div`
                     border-radius: 5px;
                     margin-bottom: 5px;
                     padding: 5px;
+                    cursor: pointer;
                     /* margin: px; */
                     
                     

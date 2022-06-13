@@ -1,18 +1,24 @@
+import { useState } from 'react';
 import { Footer, Header } from './components';
 import { HomePage, ProductListPage } from './pages';
 import { Container, GlobalStyle } from './styles';
 
 function App() {
+
+    const [showHomePage, setShowHomePage] = useState(true);
     //   const { data, isLoading } = useFeaturedBanners();
     //   console.log(data, isLoading);
 
     return (
         <div className="App">
             <GlobalStyle />
-            <Header />
+            <Header setShowHomePage={setShowHomePage} />
             <Container container>
-                {/* <HomePage /> */}
-                <ProductListPage />
+                {
+                    (showHomePage)
+                    ? <HomePage setShowHomePage={setShowHomePage} />
+                    : <ProductListPage/>
+                }
             </Container>
             <Footer />
 

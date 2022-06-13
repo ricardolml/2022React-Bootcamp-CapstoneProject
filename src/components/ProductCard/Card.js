@@ -9,6 +9,7 @@ const Card =  styled.div`
     box-shadow: 5px 5px 5px ${colors.Gray[200]};
     position: relative;
     max-width: 200px;
+    cursor: pointer;
     img{
         border-radius: 5px;
         position: relative;
@@ -34,13 +35,6 @@ const Card =  styled.div`
             justify-content: space-between;
             position: relative;
             bottom: 15px;
-        }
-    }
-
-    @media (max-width: ${ max_widths.sm }) {
-        width: 100%;        
-        img{
-            max-height: 280px;
         }
     }
 `;

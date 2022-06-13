@@ -2,12 +2,15 @@ import React from 'react'
 import NavBar from './NavBar';
 import { Input } from '../../styles';
 
-const Header = () => {
+const Header = ({setShowHomePage}) => {
 
+    const handleGoHome = () =>{
+        setShowHomePage(true);
+    }
 
     return (
         <NavBar >
-            <span>EcoForniture</span>
+            <span onClick={handleGoHome}>EcoForniture</span>
             <div>
                 <Input type='text' placeholder='Search...' />
                 <i className="fa-solid fa-cart-shopping end"> </i>

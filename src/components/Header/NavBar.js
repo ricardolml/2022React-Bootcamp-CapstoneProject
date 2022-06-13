@@ -13,6 +13,7 @@ const NavBar = styled.nav`
         font-weight: bold;
         font-size: 25px;
         color: ${ colors.Teal[700] };
+        cursor: pointer;
     }
 
     i:hover{
