@@ -29,11 +29,16 @@ const ContentProductList = styled.div`
                     
                     
                 }
+
+                li:hover{
+                    background-color: ${colors.Gray[200]};
+                }
             }      
         }
     }
     .active{
         background-color: ${colors.Gray[200]};
+        font-weight: bold;
     }
     .productList{
     }
@@ -55,7 +60,7 @@ const ContentProductList = styled.div`
                     background-color: ${ colors.Gray[200] };
                     
                     label{
-                        padding: 3px;
+                        /* padding: 3px; */
                         width: 100%;
                     }
                 
@@ -68,11 +73,22 @@ const ContentProductList = styled.div`
             overflow-y: scroll;
             padding-bottom: 100px;
             max-height: 60vh;
+            .loading{
+                width: 95vw;
+            }
             /* margin-top: 30px; */
         }
         .active{
-            background-color: ${colors.Gray[300]};
+            background-color: none;
         }
+
+    }
+
+    .loading{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 75vw;
     }
 `
 export default ContentProductList;
