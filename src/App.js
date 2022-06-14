@@ -13,7 +13,7 @@ function App() {
         <div className="App">
             <GlobalStyle />
             <Header setShowHomePage={setShowHomePage} />
-            <Container container>
+            <Container >
                 {
                     (showHomePage)
                     ? <HomePage setShowHomePage={setShowHomePage} />

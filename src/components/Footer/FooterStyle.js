@@ -8,10 +8,10 @@ const FooterStyle = styled.footer`
     display: flex;
     padding: 20px;
     justify-content: center;
-    position: fixed;
-    right: 0;
+    /* position: fixed; */
+    /* right: 0; */
     text-align: center;
-    width: 100%;
+    /* width: 100%; */
     /* height: 200px; */
     background-color:  ${ colors.Gray[200] };
 `;

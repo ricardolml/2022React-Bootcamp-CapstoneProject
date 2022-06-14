@@ -23,6 +23,11 @@ const ProductListStyle =  styled.div`
             color: ${colors.Gray[200]};
         }
     }
+    .pagination{
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 20px;
+    }
 
     @media (max-width: ${ max_widths.sm }) {
         .viewAll{

@@ -48,6 +48,7 @@ const ContentProductList = styled.div`
         flex-direction: column;
         gap: 5px;
         .slider{
+            margin-top: 20px;
             width: 100%;
             border-right: 0px;
             .categories{                
@@ -77,7 +78,7 @@ const ContentProductList = styled.div`
             .loading{
                 width: 95vw;
             }
-            /* margin-top: 30px; */
+            margin-top: 30px;
         }
         .active{
             background-color: none;

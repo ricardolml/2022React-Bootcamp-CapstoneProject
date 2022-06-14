@@ -2,13 +2,12 @@ import styled from "styled-components";
 import { colors } from "../../styles/_variables";
 
 const NavBar = styled.nav`
-    position: sticky;
     align-items: center;
-    border-radius: 10px;
-    border: 1px solid ${colors.Gray[300]} ;
+    /* border-radius: 10px; */
     display: flex;
     flex-flow: row wrap;
     padding: 15px;
+    background-color: ${colors.Gray[200]};
     span{
         font-weight: bold;
         font-size: 25px;

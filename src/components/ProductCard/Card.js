@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors, max_widths } from "../../styles/_variables";
+import { colors } from "../../styles/_variables";
 
 
 const Card =  styled.div`

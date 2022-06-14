@@ -1,4 +1,5 @@
 import React from 'react'
+import Pagination from '../Pagination/Pagination';
 import Card from '../ProductCard/Card';
 import ProductCard from '../ProductCard/ProductCard';
 import ProductListStyle from './ProductListStyle'
@@ -25,7 +26,15 @@ const ProductList = ({ productsList, title, setShowHomePage, viewAll }) => {
                     )
                 }
             </div>
-
+            {
+                !viewAll &&
+                (
+                    <div className='pagination'>
+                        <Pagination numPages={5} />
+                    </div>
+                )
+            }
+            
         </ProductListStyle>
     )
 }
