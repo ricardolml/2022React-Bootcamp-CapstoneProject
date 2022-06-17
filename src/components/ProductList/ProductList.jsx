@@ -3,8 +3,11 @@ import Pagination from '../Pagination/Pagination';
 import Card from '../ProductCard/Card';
 import ProductCard from '../ProductCard/ProductCard';
 import ProductListStyle from './ProductListStyle'
+import { useNavigate } from "react-router-dom";
 
-const ProductList = ({ productsList, title, setShowHomePage, viewAll }) => {
+const ProductList = ({ productsList, title, viewAll }) => {
+    const navigate = useNavigate();
+
     const products = productsList.map(product => (
         <div key={product.id}>
             <ProductCard product={product} />
@@ -19,7 +22,10 @@ const ProductList = ({ productsList, title, setShowHomePage, viewAll }) => {
                 {
                     viewAll &&
                     (
-                        <Card className='viewAll' onClick={() => setShowHomePage(false)}>
+                        <Card 
+                            className='viewAll' 
+                            onClick={() => navigate('../products', { replace: true }) }
+                        >
                             <i className="fa-solid fa-3x fa-angles-right"> </i>
                             <label> View all products </label>
                         </Card>

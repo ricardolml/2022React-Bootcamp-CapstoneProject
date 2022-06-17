@@ -2,15 +2,14 @@ import React from 'react';
 import { Carrusel, ProductList, Slider } from '../../components';
 import feactureProducts from '../../mocks/en-us/featured-products.json';
 
-const HomePage = ({ setShowHomePage }) => {
+const HomePage = () => {
     return (
         <>
             <Carrusel />
             <Slider />
             <ProductList 
                 productsList={feactureProducts.results} 
-                title='Featured Products' 
-                setShowHomePage={setShowHomePage}
+                title='Featured Products'
                 viewAll={true}
             />
         </>
