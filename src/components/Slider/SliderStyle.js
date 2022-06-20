@@ -4,12 +4,15 @@ import { max_widths } from "../../styles/_variables";
 const SliderStyle = styled.div`
     display: flex;
     justify-content: space-between;
-    max-height: 130px;
+    max-height: 100px;
     overflow: hidden;
     position: relative;
+    gap: 15px;
     img{
         width: 100%;
-        height: auto;
+        /* height: auto; */
+        max-height: 100px;
+        border-radius: 5px;
         object-fit: cover;
     }
 
@@ -23,6 +26,7 @@ const SliderStyle = styled.div`
         padding: 5px;
         width: 100%;
         text-align: center;
+
     }
 
     .info:hover{
@@ -34,6 +38,8 @@ const SliderStyle = styled.div`
 
     .info{
         position: relative;
+        width: 100%;
+        cursor: pointer;
     }
 
     @-moz-document url-prefix() {
@@ -46,11 +52,18 @@ const SliderStyle = styled.div`
     }
 
     @media (max-width: ${ max_widths.sm }) {
+        gap: 5px;
         label {
             font-size: 10px;
             display: block;
+            padding: 0;
+            bottom: 5px;
 
         };
+
+        img{
+            border-radius: 0px;
+        }
     }
 
     

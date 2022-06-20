@@ -1,29 +1,46 @@
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const useCategoriesSelected = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [categoriesSelect, setCategoriesSelect] = useState([]);
 
-    const [categoriesSelect, setCategoriesSelect] = useState([]);
+  const handleSelectCategory = (e, id) => {
+    const select = e.target;
+    if (select.className === "active") {
+      select.className = "";
+      const newArreCategories = categoriesSelect.filter(
+        (idCategory) => idCategory !== id
+      );
+      setSearchParams({ categories: newArreCategories.join("_") });
+      setCategoriesSelect(newArreCategories);
+    } else {
+      select.className = "active";
+      setCategoriesSelect([...categoriesSelect, id]);
+      setSearchParams({ categories: [...categoriesSelect, id].join("_") });
+    }
+  };
 
-    const handleSelectCategory = (e, id) => {
-        const select = e.target;
-
-        if (select.className === 'active') {
-            select.className = '';
-
-            const newArreCategories = categoriesSelect.filter((idCategory) => idCategory !== id);
-            setCategoriesSelect(newArreCategories);
-        } else {
-            select.className = 'active';
-            setCategoriesSelect([...categoriesSelect, id]);
+  useEffect(() => {
+    const categories = [];
+    searchParams
+      ?.get("categories")
+      .split("_")
+      .forEach((idCategory) => {
+        const li = document.querySelector(`#${idCategory}`);
+        if (li) {
+          li.className = "active";
         }
-    }
+        categories.push(idCategory);
+      });
+    setCategoriesSelect(categories);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    return {
-        categoriesSelect,
-        handleSelectCategory,
-    }
+  return {
+    categoriesSelect,
+    handleSelectCategory,
+  };
+};
 
-}
-
-export default useCategoriesSelected
+export default useCategoriesSelected;

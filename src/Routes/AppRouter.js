@@ -1,11 +1,12 @@
 import React, { Suspense } from 'react'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { Header } from '../components';
+// import LoadingSuspense from '../components/Loading/LoadingSuspense';
 import { Container, GlobalStyle } from '../styles';
 import { routes, Home } from './routes';
 
 const AppRouter = () => {
-    
+
     return (
 
         <Suspense fallback={<>...</>}>

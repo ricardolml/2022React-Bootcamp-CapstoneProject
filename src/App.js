@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import AppRouter from './Routes/AppRouter';
 
 function App() {
-    //   const { data, isLoading } = useFeaturedBanners();
-    //   console.log(data, isLoading);
-
+//       const { data, isLoading } = useFeaturedBanners();
+//       console.log(data, isLoading);
     return (<AppRouter />);
 }
 
