@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors, max_widths } from "../../styles/_variables";
+import { colors } from "../../styles/_variables";
 
 
 const ProductListStyle =  styled.div`
@@ -29,9 +29,10 @@ const ProductListStyle =  styled.div`
         margin-right: 20px;
     }
 
-    @media (max-width: ${ max_widths.sm }) {
+    @media (max-width: 594px) {
         .viewAll{
            min-height: 200px;
+           /* padding: 20px; */
         }
     }
 `;

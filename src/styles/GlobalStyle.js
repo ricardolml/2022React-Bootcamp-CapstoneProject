@@ -13,6 +13,9 @@ const GlobalStyle = createGlobalStyle`
     hr{
         border: 1px solid ${colors.Gray[200]};
     }
+    button{
+        cursor: pointer;
+    }
 `;
 
 export default GlobalStyle;

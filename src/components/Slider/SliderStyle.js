@@ -20,12 +20,15 @@ const SliderStyle = styled.div`
         position: absolute;
         font-weight: bold;
         left: 0%;
-        bottom: 1px;
+        bottom: 0px;
         font-size: 15px;
         backdrop-filter: blur(10px);
-        padding: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         width: 100%;
         text-align: center;
+        cursor: pointer;
+        border-radius: 5px;
 
     }
 

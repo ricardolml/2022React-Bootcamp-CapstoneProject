@@ -23,17 +23,18 @@ const useCategoriesSelected = () => {
 
   useEffect(() => {
     const categories = [];
-    searchParams
-      ?.get("categories")
-      .split("_")
-      .forEach((idCategory) => {
-        const li = document.querySelector(`#${idCategory}`);
-        if (li) {
-          li.className = "active";
-        }
-        categories.push(idCategory);
-      });
-    setCategoriesSelect(categories);
+    searchParams.get("categories") &&
+      searchParams
+        ?.get("categories")
+        .split("_")
+        .forEach((idCategory) => {
+          const li = document.querySelector(`#${idCategory}`);
+          if (li) {
+            li.className = "active";
+          }
+          categories.push(idCategory);
+        });
+    categories.length > 0 && setCategoriesSelect(categories);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
