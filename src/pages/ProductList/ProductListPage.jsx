@@ -1,15 +1,20 @@
-import React from "react";
-import { ContentProductList } from "../../styles";
-import categoriesData from "../../mocks/en-us/product-categories.json";
-import { Loading, ProductList } from "../../components";
-import useProducts from "../../utils/hooks/useProducts";
-import useCategoriesSelected from "../../utils/hooks/useCategoriesSelected";
+import React from 'react';
+import { ContentProductList } from '../../styles';
+import categoriesData from '../../mocks/en-us/product-categories.json';
+import { Loading, ProductList } from '../../components';
+import useProducts from '../../utils/hooks/useProducts';
+import useCategoriesSelected from '../../utils/hooks/useCategoriesSelected';
+
 const ProductListPage = () => {
-  
   const { handleSelectCategory, categoriesSelect } = useCategoriesSelected();
   const { productsState } = useProducts(categoriesSelect);
+
   const listCategories = categoriesData.results.map((category) => (
-    <li key={category.id} id={category.id} onClick={(e) => handleSelectCategory(e, category.id)}>
+    <li
+      key={category.id}
+      id={category.id}
+      onClick={(e) => handleSelectCategory(e, category.id)}
+    >
       {category.data.name}
     </li>
   ));
@@ -17,7 +22,7 @@ const ProductListPage = () => {
   return (
     <ContentProductList>
       <div className={`slider`}>
-        <div className="categories">
+        <div className='categories'>
           Categories Filter
           <ul>{listCategories}</ul>
         </div>
@@ -29,7 +34,7 @@ const ProductListPage = () => {
         ) : productsState.products.length > 0 ? (
           <ProductList productsList={productsState.products} />
         ) : (
-          "Ops... No data"
+          'Ops... No data'
         )}
       </div>
     </ContentProductList>

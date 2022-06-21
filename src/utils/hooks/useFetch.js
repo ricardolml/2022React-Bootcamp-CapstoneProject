@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../constants';
 import { useLatestAPI } from './useLatestAPI';
 
-export function useFetch(type , pageSize = 5 ) {
+export function useFetch(type, pageSize = 5) {
   const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
   const [state, setState] = useState(() => ({
     data: {},
@@ -11,7 +11,7 @@ export function useFetch(type , pageSize = 5 ) {
 
   useEffect(() => {
     if (!apiRef || isApiMetadataLoading) {
-      return () => { };
+      return () => {};
     }
 
     const controller = new AbortController();
@@ -42,7 +42,7 @@ export function useFetch(type , pageSize = 5 ) {
     return () => {
       controller.abort();
     };
-  }, [apiRef, isApiMetadataLoading, type , pageSize]);
+  }, [apiRef, isApiMetadataLoading, type, pageSize]);
 
   return state;
 }

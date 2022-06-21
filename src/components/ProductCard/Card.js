@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { colors } from "../../styles/_variables";
+import styled from 'styled-components';
+import { colors } from '../../styles/_variables';
 
 const Card = styled.div`
   border: 1px solid ${colors.Gray[300]};
@@ -9,15 +9,17 @@ const Card = styled.div`
   position: relative;
   min-width: 18rem;
   max-width: 18rem;
-  max-height: 480px;
-  min-height: 480px;
+  max-height: 450px;
+  min-height: 450px;
   /* cursor: pointer; */
   .img {
-    display: flex;
-    border-radius: 5px;
     position: relative;
-    width: 100%;
-    justify-content: center;
+    .fav {
+      position: absolute;
+      padding-top: 10px;
+      right: 5%;
+      font-size: 20px;
+    }
   }
   img {
     width: 100%;
@@ -31,31 +33,31 @@ const Card = styled.div`
     padding-right: 10px;
     h5 {
       color: ${colors.Gray[500]};
-      height: 10px;
+      margin: 0;
+      height: 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
-    
 
     .content {
       display: flex;
-      gap: 5px;
-      flex-direction: column;
-      bottom: 15px;
-      
-      .information {
-        display: flex;
-        justify-content: space-between;
-        position: relative;
-      }
+      justify-content: space-between;
+      position: relative;
     }
 
-    button{
-      width: 50px;
-      height: 50px;
-      border: 1px solid ${colors.Gray[100]};
-      margin-left: auto;
-      border-radius: 100%; 
-      &:hover{
+    .opt {
+      display: flex;
+      width: 100%;
+      button {
+        width: 50px;
+        height: 50px;
+        border: 1px solid ${colors.Gray[100]};
+        margin-left: auto;
+        border-radius: 100%;
         background-color: ${colors.Gray[200]};
+        &:hover {
+          background-color: ${colors.Gray[300]};
+        }
       }
     }
   }

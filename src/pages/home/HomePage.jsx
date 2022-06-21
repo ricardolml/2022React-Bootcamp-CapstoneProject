@@ -1,10 +1,10 @@
-import React from "react";
-import { Carrusel, ProductList, Slider } from "../../components";
-// import feactureProducts from "../../mocks/en-us/featured-products.json";
-import { useFetch } from "../../utils/hooks/useFetch";
+import React from 'react';
+import { Carrusel, ProductList, Slider } from '../../components';
+// import feactureProducts from '../../mocks/en-us/featured-products.json';
+import { useFetch } from '../../utils/hooks/useFetch';
 
 const HomePage = () => {
-  const { data, isLoading } = useFetch("product", 16);
+  const { data, isLoading } = useFetch('product', 16);
   return (
     <>
       <Carrusel />
@@ -12,7 +12,7 @@ const HomePage = () => {
       {!isLoading && (
         <ProductList
           productsList={data.results}
-          title="Featured Products"
+          title='Featured Products'
           viewAll={true}
         />
       )}

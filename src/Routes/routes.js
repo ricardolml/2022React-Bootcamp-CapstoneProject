@@ -1,25 +1,25 @@
-import { lazy } from "react";
+import { lazy } from 'react';
 /* eslint-disable max-len */
 export const Home = lazy(() =>
-  import(/* webpackChunkName: "HomePage"*/ "../pages/home/HomePage")
+  import(/* webpackChunkName: "HomePage"*/ '../pages/home/HomePage')
 );
 const Products = lazy(() =>
   import(
-    /* webpackChunkName: "ProducstList"*/ "../pages/ProductList/ProductListPage"
+    /* webpackChunkName: "ProducstList"*/ '../pages/ProductList/ProductListPage'
   )
 );
 
 export const routes = [
   {
-    to: "/home",
-    path: "home",
+    to: '/home',
+    path: 'home',
     Component: Home,
-    name: "Home",
+    name: 'Home',
   },
   {
-    to: "/products",
-    path: "products",
+    to: '/products',
+    path: 'products',
     Component: Products,
-    name: "Products",
+    name: 'Products',
   },
 ];
