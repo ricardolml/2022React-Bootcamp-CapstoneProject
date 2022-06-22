@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../constants';
 import { useLatestAPI } from './useLatestAPI';
 
-export function useFetch(type, pageSize = 5) {
+export function useFetch(type, tags, pageSize = 5) {
   const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
   const [state, setState] = useState(() => ({
     data: {},
@@ -22,7 +22,9 @@ export function useFetch(type, pageSize = 5) {
 
         const response = await fetch(
           `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(
-            `[[at(document.type, "${type}" )]]`
+            `[[at(document.type, "${type}" )] ${
+              tags ? `[at(document.tags, ["${tags}"] )]` : ''
+            }]`
           )}&lang=en-us&pageSize=${pageSize}`,
           {
             signal: controller.signal,

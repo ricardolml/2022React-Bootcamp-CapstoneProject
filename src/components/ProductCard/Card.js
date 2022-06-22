@@ -11,14 +11,18 @@ const Card = styled.div`
   max-width: 18rem;
   max-height: 450px;
   min-height: 450px;
-  /* cursor: pointer; */
   .img {
+    cursor: pointer;
     position: relative;
     .fav {
       position: absolute;
       padding-top: 10px;
       right: 5%;
       font-size: 20px;
+      color: ${(props) => (props.favorite ? 'red' : 'black')};
+      &:hover {
+        color: red;
+      }
     }
   }
   img {

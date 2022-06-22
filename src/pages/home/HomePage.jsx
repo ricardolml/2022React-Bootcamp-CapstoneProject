@@ -4,7 +4,7 @@ import { Carrusel, ProductList, Slider } from '../../components';
 import { useFetch } from '../../utils/hooks/useFetch';
 
 const HomePage = () => {
-  const { data, isLoading } = useFetch('product', 16);
+  const { data, isLoading } = useFetch('product', 'Featured', 16);
   return (
     <>
       <Carrusel />

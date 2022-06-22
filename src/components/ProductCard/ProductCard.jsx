@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from './Card';
 
 const ProductCard = ({ product }) => {
   const { data: productData } = product;
+  const [favorite, setFavorite] = useState(false);
+
+  const handleChangeFav = () => setFavorite(!favorite);
 
   return (
-    <Card>
+    <Card favorite={favorite}>
       <div className='img'>
-        {/* <i class='fa-solid fa-heart fav'> </i> */}
-        <i class='fa-regular fa-heart fav'> </i>
+        <i
+          className={`${!favorite ? 'fa-regular' : 'fa-solid'} fa-heart fav `}
+          onClick={handleChangeFav}
+        />
         <img src={productData.mainimage.url} alt='' />
       </div>
       <div className='body'>
