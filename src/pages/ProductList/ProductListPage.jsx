@@ -1,23 +1,28 @@
 import React from 'react';
 import { ContentProductList } from '../../styles';
-import categoriesData from '../../mocks/en-us/product-categories.json';
 import { Loading, ProductList } from '../../components';
-import useProducts from '../../utils/hooks/useProducts';
 import useCategoriesSelected from '../../utils/hooks/useCategoriesSelected';
+import useProducts2 from '../../utils/hooks/useProducts2';
+import { useFetch } from '../../utils/hooks/useFetch';
 
 const ProductListPage = () => {
-  const { handleSelectCategory, categoriesSelect } = useCategoriesSelected();
-  const { productsState } = useProducts(categoriesSelect);
+  const { data: categoriesData, isLoading: isLoadingCategories } =
+    useFetch('category');
+  const { handleSelectCategory, categoriesSelect } =
+    useCategoriesSelected(isLoadingCategories);
+  const { data, isLoading } = useProducts2(categoriesSelect);
 
-  const listCategories = categoriesData.results.map((category) => (
-    <li
-      key={category.id}
-      id={category.id}
-      onClick={(e) => handleSelectCategory(e, category.id)}
-    >
-      {category.data.name}
-    </li>
-  ));
+  const listCategories =
+    !isLoadingCategories &&
+    categoriesData.results.map((category) => (
+      <li
+        key={category.id}
+        id={category.id}
+        onClick={(e) => handleSelectCategory(e, category.id)}
+      >
+        {category.data.name}
+      </li>
+    ));
 
   return (
     <ContentProductList>
@@ -29,10 +34,10 @@ const ProductListPage = () => {
       </div>
       <div className={`productList `}>
         <h3>Products Lists</h3>
-        {productsState.loading ? (
+        {isLoading ? (
           <Loading />
-        ) : productsState.products.length > 0 ? (
-          <ProductList productsList={productsState.products} />
+        ) : data.results.length > 0 ? (
+          <ProductList productsList={data.results} />
         ) : (
           'Ops... No data'
         )}

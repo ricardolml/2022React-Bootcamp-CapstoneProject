@@ -6,11 +6,8 @@ const Card = styled.div`
   border-radius: 5px;
   box-shadow: 0px;
   box-shadow: 5px 5px 5px ${colors.Gray[200]};
-  position: relative;
-  min-width: 18rem;
-  max-width: 18rem;
-  max-height: 450px;
-  min-height: 450px;
+  background-position: center center;
+  width: 100%;
   .img {
     cursor: pointer;
     position: relative;
@@ -28,7 +25,7 @@ const Card = styled.div`
   img {
     width: 100%;
     object-fit: cover;
-    max-height: 280px;
+    /* max-height: 280px; */
     border-radius: 5px;
   }
 
@@ -52,6 +49,7 @@ const Card = styled.div`
     .opt {
       display: flex;
       width: 100%;
+      margin-bottom: 20px;
       button {
         width: 50px;
         height: 50px;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-const useCategoriesSelected = () => {
+const useCategoriesSelected = (isLoading) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [categoriesSelect, setCategoriesSelect] = useState([]);
 
@@ -23,20 +23,22 @@ const useCategoriesSelected = () => {
 
   useEffect(() => {
     const categories = [];
-    searchParams.get('categories') &&
-      searchParams
-        ?.get('categories')
-        .split('_')
-        .forEach((idCategory) => {
-          const li = document.querySelector(`#${idCategory}`);
-          if (li) {
-            li.className = 'active';
-          }
-          categories.push(idCategory);
-        });
-    categories.length > 0 && setCategoriesSelect(categories);
+    if (!isLoading) {
+      searchParams.get('categories') &&
+        searchParams
+          ?.get('categories')
+          .split('_')
+          .forEach((idCategory) => {
+            const li = document.querySelector(`#${idCategory}`);
+            if (li) {
+              li.className = 'active';
+            }
+            categories.push(idCategory);
+          });
+      categories.length > 0 && setCategoriesSelect(categories);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isLoading]);
 
   return {
     categoriesSelect,

@@ -3,10 +3,10 @@ import { colors } from '../../styles/_variables';
 
 const ProductListStyle = styled.div`
   .content {
-    display: flex;
-    flex-flow: row wrap;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 1rem;
-    justify-content: space-evenly;
+    place-content: center;
   }
 
   .viewAll {
@@ -15,7 +15,6 @@ const ProductListStyle = styled.div`
     gap: 1rem;
     align-items: center;
     justify-content: center;
-    width: 200px;
 
     &:hover {
       background-color: ${colors.Gray[400]};
@@ -29,9 +28,28 @@ const ProductListStyle = styled.div`
   }
 
   @media (max-width: 594px) {
+    .content {
+      grid-template-columns: repeat(1, 1fr);
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+    }
     .viewAll {
-      min-height: 200px;
+      /* min-height: 200px; */
       /* padding: 20px; */
+    }
+  }
+
+  @media (min-width: 500px) {
+    .content {
+      padding-left: 20px;
+      padding-right: 20px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 900px) {
+    .content {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 `;

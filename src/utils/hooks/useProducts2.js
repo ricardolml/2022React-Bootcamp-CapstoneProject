@@ -1,13 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { API_BASE_URL } from '../constants';
 import { useLatestAPI } from './useLatestAPI';
 
-export function useFetch(type, tags, pageSize = 5) {
+const useProducts2 = (categories, page = 1, pageSize = 12) => {
+  const isMounted = useRef(true);
+
   const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
   const [state, setState] = useState(() => ({
     data: {},
     isLoading: true,
   }));
+
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   useEffect(() => {
     if (!apiRef || isApiMetadataLoading) {
@@ -19,32 +27,36 @@ export function useFetch(type, tags, pageSize = 5) {
     async function getState() {
       try {
         setState({ data: {}, isLoading: true });
-
+        const anyCategories = `"${categories.join('","')}"`;
         const response = await fetch(
           `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(
-            `[[at(document.type, "${type}" )] ${
-              tags ? `[at(document.tags, ["${tags}"] )]` : ''
-            } ]`
-          )}&lang=en-us&pageSize=${pageSize}`,
+            `[[${
+              categories.length > 0
+                ? `any(my.product.category, [${anyCategories}] )`
+                : `at(document.type, "product" )`
+            }]]`
+          )}&page=${page}&lang=en-us&pageSize=${pageSize}`,
           {
             signal: controller.signal,
           }
         );
         const data = await response.json();
 
-        setState({ data, isLoading: false });
+        isMounted.current && setState({ data, isLoading: false });
       } catch (err) {
-        setState({ data: {}, isLoading: false });
+        isMounted.current && setState({ data: {}, isLoading: false });
         console.error(err);
       }
     }
 
     getState();
-
     return () => {
       controller.abort();
     };
-  }, [apiRef, isApiMetadataLoading, type, pageSize, tags]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [apiRef, isApiMetadataLoading, page, categories]);
 
   return state;
-}
+};
+
+export default useProducts2;
