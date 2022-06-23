@@ -21,11 +21,11 @@ const ProductListStyle = styled.div`
       color: ${colors.Gray[200]};
     }
   }
-  .pagination {
+  /* .pagination {
     display: flex;
     justify-content: flex-end;
     margin-right: 20px;
-  }
+  } */
 
   @media (max-width: 594px) {
     .content {
@@ -33,6 +33,8 @@ const ProductListStyle = styled.div`
       justify-content: center;
       align-items: center;
       align-content: center;
+      padding-left: 20px;
+      padding-right: 20px;
     }
     .viewAll {
       /* min-height: 200px; */

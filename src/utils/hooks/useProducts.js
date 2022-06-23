@@ -1,13 +1,15 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import productsData from '../../mocks/en-us/products2.json';
+import { useEffect, useRef, useState } from 'react';
+import { API_BASE_URL } from '../constants';
+import { useLatestAPI } from './useLatestAPI';
 
-const useProducts = (categories) => {
+const useProducts = (categories, page = 1, pageSize = 12) => {
   const isMounted = useRef(true);
 
-  const [productsState, setProducts] = useState({
-    products: productsData.results,
-    loading: true,
-  });
+  const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
+  const [state, setState] = useState(() => ({
+    data: {},
+    isLoading: true,
+  }));
 
   useEffect(() => {
     return () => {
@@ -15,38 +17,46 @@ const useProducts = (categories) => {
     };
   }, []);
 
-  const productsFilter = useCallback(() => {
-    setProducts({
-      products: [],
-      loading: true,
-    });
-    setTimeout(() => {
-      if (categories.length === 0) {
-        /* eslint-disable max-len */
-        isMounted.current &&
-          setProducts({ products: productsData.results, loading: false });
-        return;
-      }
-
-      const arrProductos = [];
-      categories.forEach((category) => {
-        const filterProductos = productsData.results.filter(
-          (products) => products.data.category.id === category
-        );
-        arrProductos.push(filterProductos);
-      });
-      const products = arrProductos.flat();
-      isMounted.current && setProducts({ products, loading: false });
-    }, 2000);
-  }, [categories]);
-
   useEffect(() => {
-    productsFilter();
-  }, [productsFilter]);
+    if (!apiRef || isApiMetadataLoading) {
+      return () => {};
+    }
 
-  return {
-    productsState,
-  };
+    const controller = new AbortController();
+
+    async function getState() {
+      try {
+        setState({ data: {}, isLoading: true });
+        const anyCategories = `"${categories.join('","')}"`;
+        const response = await fetch(
+          `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(
+            `[[${
+              categories.length > 0
+                ? `any(my.product.category, [${anyCategories}] )`
+                : `at(document.type, "product" )`
+            }]]`
+          )}&page=${page}&lang=en-us&pageSize=${pageSize}`,
+          {
+            signal: controller.signal,
+          }
+        );
+        const data = await response.json();
+
+        isMounted.current && setState({ data, isLoading: false });
+      } catch (err) {
+        isMounted.current && setState({ data: {}, isLoading: false });
+        console.error(err);
+      }
+    }
+
+    getState();
+    return () => {
+      controller.abort();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [apiRef, isApiMetadataLoading, page, categories]);
+
+  return state;
 };
 
 export default useProducts;

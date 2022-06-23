@@ -7,9 +7,10 @@ export const Button = styled.button`
   padding: 10px;
   border-radius: 5px;
   border: none;
-  background-color: ${colors.Gray[400]};
+  color: ${colors.Gray[600]};
+  background-color: ${colors.Gray[300]};
   &:hover {
-    background-color: ${colors.Gray[300]};
+    background-color: ${colors.Gray[200]};
   }
 `;
 

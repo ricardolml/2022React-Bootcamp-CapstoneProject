@@ -1,10 +1,33 @@
 import styled from 'styled-components';
 import { colors, max_widths } from '../../styles/_variables';
 
-const PaginationStyle = styled.ul`
-  list-style: none;
+const PaginationStyle = styled.div`
+  /* list-style: none; */
   margin-top: 40px;
   margin-bottom: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  color: ${colors.Gray[500]};
+  span:hover {
+    color: ${colors.Gray[800]};
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .page {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    select {
+      font-size: 17px;
+      border: 1px solid ${colors.Gray[300]};
+      padding: 20px;
+    }
+  }
+
   li {
     display: inline;
     border: 1px solid ${colors.Gray[300]};

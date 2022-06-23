@@ -11,7 +11,7 @@ const HomePage = () => {
       <Slider />
       {!isLoading && (
         <ProductList
-          productsList={data.results}
+          productsList={data}
           title='Featured Products'
           viewAll={true}
         />

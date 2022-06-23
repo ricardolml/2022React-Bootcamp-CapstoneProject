@@ -1,5 +1,4 @@
 import React from 'react';
-import Pagination from '../Pagination/Pagination';
 import Card from '../ProductCard/Card';
 import ProductCard from '../ProductCard/ProductCard';
 import ProductListStyle from './ProductListStyle';
@@ -8,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const ProductList = ({ productsList, title, viewAll }) => {
   const navigate = useNavigate();
 
-  const products = productsList.map((product) => (
+  const products = productsList.results.map((product) => (
     <div key={product.id}>
       <ProductCard product={product} />
     </div>
@@ -29,11 +28,6 @@ const ProductList = ({ productsList, title, viewAll }) => {
           </Card>
         )}
       </div>
-      {!viewAll && (
-        <div className='pagination'>
-          <Pagination numPages={5} />
-        </div>
-      )}
     </ProductListStyle>
   );
 };

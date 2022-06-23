@@ -1,16 +1,21 @@
-import React from 'react';
-import { ContentProductList } from '../../styles';
+import React, { useState } from 'react';
+import { Button, ContentProductList } from '../../styles';
 import { Loading, ProductList } from '../../components';
 import useCategoriesSelected from '../../utils/hooks/useCategoriesSelected';
-import useProducts2 from '../../utils/hooks/useProducts2';
+import useProducts2 from '../../utils/hooks/useProducts';
 import { useFetch } from '../../utils/hooks/useFetch';
+import Pagination from '../../components/Pagination/Pagination';
 
 const ProductListPage = () => {
+  const [page, setPage] = useState(1);
   const { data: categoriesData, isLoading: isLoadingCategories } =
     useFetch('category');
-  const { handleSelectCategory, categoriesSelect } =
-    useCategoriesSelected(isLoadingCategories);
-  const { data, isLoading } = useProducts2(categoriesSelect);
+  const {
+    categoriesSelect,
+    handleSelectCategory,
+    handleClearCategoriesSelect,
+  } = useCategoriesSelected(isLoadingCategories);
+  const { data, isLoading } = useProducts2(categoriesSelect, page);
 
   const listCategories =
     !isLoadingCategories &&
@@ -30,6 +35,11 @@ const ProductListPage = () => {
         <div className='categories'>
           Categories Filter
           <ul>{listCategories}</ul>
+          {categoriesSelect.length > 0 && (
+            <Button onClick={handleClearCategoriesSelect}>
+              Clear filters <i className='fa-regular fa-trash-can'> </i>
+            </Button>
+          )}
         </div>
       </div>
       <div className={`productList `}>
@@ -37,7 +47,16 @@ const ProductListPage = () => {
         {isLoading ? (
           <Loading />
         ) : data.results.length > 0 ? (
-          <ProductList productsList={data.results} />
+          <div>
+            <ProductList productsList={data} setPage={setPage} />
+            <div className='pagination'>
+              <Pagination
+                numPages={data.total_pages}
+                setPage={setPage}
+                page={page}
+              />
+            </div>
+          </div>
         ) : (
           'Ops... No data'
         )}

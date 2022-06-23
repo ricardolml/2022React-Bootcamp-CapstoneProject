@@ -21,6 +21,14 @@ const useCategoriesSelected = (isLoading) => {
     }
   };
 
+  const handleClearCategoriesSelect = () => {
+    categoriesSelect.forEach(
+      (category) => (document.querySelector(`#${category}`).className = '')
+    );
+    setCategoriesSelect([]);
+    setSearchParams([]);
+  };
+
   useEffect(() => {
     const categories = [];
     if (!isLoading) {
@@ -43,6 +51,7 @@ const useCategoriesSelected = (isLoading) => {
   return {
     categoriesSelect,
     handleSelectCategory,
+    handleClearCategoriesSelect,
   };
 };
 
