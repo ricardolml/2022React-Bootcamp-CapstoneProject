@@ -3,7 +3,8 @@ import PaginationStyle from './PaginationStyle';
 
 const Pagination = ({ numPages, page, setPage }) => {
   const handleChangePage = (e) => {
-    setPage(e.target.value);
+    const num = parseInt(e.target.value);
+    setPage(num);
   };
   const handlePrevious = () => {
     setPage(page - 1);
@@ -24,7 +25,7 @@ const Pagination = ({ numPages, page, setPage }) => {
         <label htmlFor=''>Page</label>
         <select value={page} onChange={handleChangePage}>
           {[...Array(numPages)].map((e, i) => (
-            <option key={i}> {i + 1}</option>
+            <option key={i}>{i + 1}</option>
           ))}
         </select>
         <label htmlFor=''>of {numPages}</label>
