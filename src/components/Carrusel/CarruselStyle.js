@@ -20,15 +20,25 @@ const CarruselStyle = styled.div`
 
     label{
         position: absolute;
+        padding-top: 20px;
         left: 0%;
         bottom: 1px;
         font-weight: bold;
         font-size: 20px;
         backdrop-filter: blur(20px);
-        padding: 1em;
+        /* height: 1em; */
+        height: 50px;
         width: 100%;
         justify-content: center;
         text-align: center;
+    }
+    @-moz-document url-prefix() {
+        label {
+        background-color: rgba(255,255,255,0.5);
+        bottom: 0px;
+        text-decoration: underline;
+        text-align: center;
+        }
     }
 
     .slider :first-child {

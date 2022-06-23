@@ -36,6 +36,15 @@ const SliderStyle = styled.div`
         position: relative;
     }
 
+    @-moz-document url-prefix() {
+        label {
+        background-color: rgba(255,255,255,0.5);
+        bottom: 0px;
+        text-decoration: underline;
+        text-align: center;
+        }
+    }
+
     @media (max-width: ${ max_widths.sm }) {
         label {
             font-size: 10px;

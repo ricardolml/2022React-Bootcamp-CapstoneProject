@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors, max_widths } from "../../styles/_variables";
+import { colors } from "../../styles/_variables";
 
 
 const Card =  styled.div`
@@ -7,14 +7,14 @@ const Card =  styled.div`
     border-radius: 5px;
     box-shadow: 0px;
     box-shadow: 5px 5px 5px ${colors.Gray[200]};
-    min-height: 320px;
-    /* padding: 10px; */
     position: relative;
-
+    max-width: 200px;
+    cursor: pointer;
     img{
         border-radius: 5px;
+        position: relative;
+        display: flex;
         width: 100%;
-        max-height: 200px;
         object-fit: cover;
     }
 
@@ -29,21 +29,12 @@ const Card =  styled.div`
         .category{
             color: ${ colors.Gray[400] };
         }
-
         
         .content{
             display: flex;
             justify-content: space-between;
             position: relative;
             bottom: 15px;
-        }
-    }
-
-    @media (max-width: ${ max_widths.sm }) {
-        max-height: 450px;
-        
-        img{
-            max-height: 280px;
         }
     }
 `;
