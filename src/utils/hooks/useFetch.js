@@ -47,7 +47,7 @@ export function useFetch(type, tags, id, pageSize = 16) {
     return () => {
       controller.abort();
     };
-  }, [apiRef, isApiMetadataLoading, type, pageSize, tags]);
+  }, [apiRef, isApiMetadataLoading, type, pageSize, tags, id]);
 
   return state;
 }

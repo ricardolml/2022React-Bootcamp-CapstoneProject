@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import Card from './Card';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
   const { data: productData } = product;
   const [favorite, setFavorite] = useState(false);
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate(`/products/${product.id}`, { replace: true });
+  };
 
   const handleChangeFav = () => setFavorite(!favorite);
 
   return (
     <Card favorite={favorite}>
-      <div className='img'>
+      <div className='img' onClick={handleNavigate}>
         <i
           className={`${!favorite ? 'fa-regular' : 'fa-solid'} fa-heart fav `}
           onClick={handleChangeFav}
