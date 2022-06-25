@@ -11,7 +11,7 @@ const NavBar = styled.nav`
   span {
     font-weight: bold;
     font-size: 25px;
-    color: ${colors.Teal[700]};
+    color: ${colors.Orange[600]};
     cursor: pointer;
   }
 
