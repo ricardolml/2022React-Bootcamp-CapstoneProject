@@ -13,8 +13,9 @@ const Search = () => {
   const [petitionState, setPetitionState] = useState(initialState);
   const textValue = useRef();
   const debounceRef = useRef();
+  const [loadingKey, setLoadingKey] = useState(false);
 
-  const { data } = useFetch(
+  const { data, isLoading } = useFetch(
     petitionState.type,
     null,
     null,
@@ -22,14 +23,14 @@ const Search = () => {
     petitionState.value
   );
   const products = data.results;
-
   const onQueryChanged = (event) => {
-    const value = event.target.value;
+    const value = event.target.value.trim();
     if (debounceRef.current) {
       clearTimeout(debounceRef.current);
     }
-
+    setLoadingKey(true);
     debounceRef.current = setTimeout(() => {
+      setLoadingKey(false);
       if (value === '') {
         setPetitionState(initialState);
         return;
@@ -51,34 +52,64 @@ const Search = () => {
 
   return (
     <SearchStyle style={{ width: '100%', position: 'relative' }}>
-      <Input
-        ref={textValue}
-        type='text'
-        placeholder='Search Forniture...'
-        onChange={onQueryChanged}
-      />
+      <div className='input'>
+        <Input
+          ref={textValue}
+          type='text'
+          placeholder='Search Forniture...'
+          onChange={onQueryChanged}
+        />
+        {!loadingKey ? (
+          <i className='fa-solid fa-magnifying-glass search'> </i>
+        ) : (
+          <img
+            src='/img/cargando-spin.gif'
+            alt='loadin'
+            width='20px'
+            className='search'
+          />
+        )}
+      </div>
       <div className='content2'>
-        {products?.length > 0 && (
+        {products?.length > 0 ? (
           <ul style={{ listStyle: 'none' }}>
-            {products?.length > 0 &&
-              products.map(({ id, data }) => (
-                <Link
-                  key={id}
-                  to={`/products/${id}`}
-                  replace
-                  onClick={handleClear}
-                  className='link'
-                >
-                  <li>
-                    <img src={data.mainimage.url} alt='' width='50px' />
+            {products.map(({ id, data }) => (
+              <Link
+                key={id}
+                to={`/products/${id}`}
+                replace
+                onClick={handleClear}
+                className='link'
+              >
+                <li>
+                  <img src={data.mainimage.url} alt='' width='50px' />
+                  <div>
                     {data.name}
-                  </li>
-                </Link>
-              ))}
-            <li className='viewAll'>
-              View all results {data.total_results_size}
-            </li>
+                    <br />
+                    <span className='price'>${data.price}</span>
+                  </div>
+                </li>
+              </Link>
+            ))}
+            <Link
+              to={`/search?q=${petitionState.value}`}
+              replace
+              className='viewAll'
+              onClick={handleClear}
+            >
+              <li>View all results {data.total_results_size}</li>
+            </Link>
           </ul>
+        ) : (
+          products?.length === 0 &&
+          !isLoading && (
+            <ul>
+              <li>
+                <img src='/img/no-result.png' alt='' width='30px' />
+                Sorry, we couldn't find anything like : {petitionState.value}
+              </li>
+            </ul>
+          )
         )}
       </div>
     </SearchStyle>

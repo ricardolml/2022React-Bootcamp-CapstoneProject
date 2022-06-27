@@ -8,6 +8,7 @@ const Card = styled.div`
   box-shadow: 5px 5px 5px ${colors.Gray[200]};
   background-position: center center;
   width: 100%;
+  height: 100%;
   .img {
     cursor: pointer;
     position: relative;
@@ -59,6 +60,7 @@ const Card = styled.div`
     .opt {
       display: flex;
       width: 100%;
+      margin-top: 20px;
       margin-bottom: 20px;
       button {
         width: 50px;

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../constants';
 import { useLatestAPI } from './useLatestAPI';
 
-export function useFetch(type, tags, id, pageSize = 16, fulltext) {
+export function useFetch(type, tags, id, pageSize = 16, fulltext, page = 1) {
   const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
   const [state, setState] = useState(() => ({
     data: {},
@@ -35,7 +35,7 @@ export function useFetch(type, tags, id, pageSize = 16, fulltext) {
         const response = await fetch(
           `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(
             `[${params}]`
-          )}&lang=en-us&pageSize=${pageSize}`,
+          )}&page=${page}&lang=en-us&pageSize=${pageSize}`,
           {
             signal: controller.signal,
           }
@@ -54,7 +54,7 @@ export function useFetch(type, tags, id, pageSize = 16, fulltext) {
     return () => {
       controller.abort();
     };
-  }, [apiRef, isApiMetadataLoading, type, pageSize, tags, id, fulltext]);
+  }, [apiRef, isApiMetadataLoading, type, pageSize, tags, id, fulltext, page]);
 
   return state;
 }

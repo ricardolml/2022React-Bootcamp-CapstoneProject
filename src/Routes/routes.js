@@ -13,6 +13,11 @@ const ProductList = lazy(() =>
     /* webpackChunkName: "ProducstList"*/ '../pages/ProductList/ProductListPage'
   )
 );
+const SearchProducts = lazy(() =>
+  import(
+    /* webpackChunkName: "SearchProducts"*/ '../pages/SearchProducts/SearchProductsPage'
+  )
+);
 
 const arrRoutes = [
   {
@@ -46,6 +51,12 @@ const arrRoutes = [
         name: 'Product Detail',
       },
     ],
+  },
+  {
+    to: '/search',
+    path: 'search',
+    Component: SearchProducts,
+    name: 'SearchProduct',
   },
 ];
 

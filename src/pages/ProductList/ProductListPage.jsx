@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, ContentProductList } from '../../styles';
 import { Loading, ProductList } from '../../components';
 import useCategoriesSelected from '../../utils/hooks/useCategoriesSelected';
-import useProducts2 from '../../utils/hooks/useProducts';
+import useProducts from '../../utils/hooks/useProducts';
 import { useFetch } from '../../utils/hooks/useFetch';
 import Pagination from '../../components/Pagination/Pagination';
 
@@ -15,7 +15,7 @@ const ProductListPage = () => {
     handleSelectCategory,
     handleClearCategoriesSelect,
   } = useCategoriesSelected(isLoadingCategories);
-  const { data, isLoading } = useProducts2(categoriesSelect, page);
+  const { data, isLoading } = useProducts(categoriesSelect, page);
 
   const listCategories =
     !isLoadingCategories &&

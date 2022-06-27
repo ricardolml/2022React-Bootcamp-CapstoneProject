@@ -22,11 +22,11 @@ const ProductCard = ({ product }) => {
       <div className='body'>
         <h5>{productData.name}</h5>
         <div className='content'>
-          <h6 className='category'> #{productData.category.slug}</h6>
-          <h6 className='price'>
+          <span className='category'> #{productData.category.slug}</span>
+          <span className='price'>
             $
             {productData.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-          </h6>
+          </span>
         </div>
         <div className='opt'>
           <button type='button' title='add cart'>
