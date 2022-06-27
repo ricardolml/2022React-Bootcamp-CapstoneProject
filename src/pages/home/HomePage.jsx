@@ -1,10 +1,13 @@
 import React from 'react';
-import { Carrusel, ProductList, Slider } from '../../components';
+import { Carrusel, Loading, ProductList, Slider } from '../../components';
 // import feactureProducts from '../../mocks/en-us/featured-products.json';
 import { useFetch } from '../../utils/hooks/useFetch';
 
 const HomePage = () => {
   const { data, isLoading } = useFetch('product', 'Featured');
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <>
       <Carrusel />

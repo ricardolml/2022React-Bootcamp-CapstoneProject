@@ -7,10 +7,10 @@ export const Button = styled.button`
   padding: 10px;
   border-radius: 5px;
   border: none;
-  color: ${colors.Gray[100]};
-  background-color: ${colors.Orange[600]};
+  color: white;
+  background-color: ${colors.primary};
   &:hover {
-    background-color: ${colors.Orange[500]};
+    background-color: ${colors.hover};
   }
 `;
 

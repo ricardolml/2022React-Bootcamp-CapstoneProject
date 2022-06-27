@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../constants';
 import { useLatestAPI } from './useLatestAPI';
 
-export function useFetch(type, tags, id, pageSize = 16) {
+export function useFetch(type, tags, id, pageSize = 16, fulltext) {
   const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
   const [state, setState] = useState(() => ({
     data: {},
@@ -13,7 +13,13 @@ export function useFetch(type, tags, id, pageSize = 16) {
     if (!apiRef || isApiMetadataLoading) {
       return () => {};
     }
-
+    if (type === null) {
+      setState({
+        data: {},
+        isLoading: false,
+      });
+      return () => {};
+    }
     const controller = new AbortController();
 
     async function getState() {
@@ -21,6 +27,7 @@ export function useFetch(type, tags, id, pageSize = 16) {
         ${id ? `[at(document.id, "${id}" )]` : ''}
         ${type ? `[at(document.type, "${type}" )]` : ''}
         ${tags ? `[at(document.tags, ["${tags}"] )]` : ''}
+        ${fulltext ? `[fulltext(document, "${fulltext}" )]` : ''}
       `;
       try {
         setState({ data: {}, isLoading: true });
@@ -47,7 +54,7 @@ export function useFetch(type, tags, id, pageSize = 16) {
     return () => {
       controller.abort();
     };
-  }, [apiRef, isApiMetadataLoading, type, pageSize, tags, id]);
+  }, [apiRef, isApiMetadataLoading, type, pageSize, tags, id, fulltext]);
 
   return state;
 }

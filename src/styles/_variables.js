@@ -1,4 +1,7 @@
 export const colors = {
+  primary: '#ea580c',
+  secondary: '#6b7280',
+  hover: '#f97316',
   Green: {
     50: '#f0fdf4',
     100: '#dcfce7',

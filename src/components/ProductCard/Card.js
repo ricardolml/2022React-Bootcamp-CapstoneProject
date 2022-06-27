@@ -16,9 +16,11 @@ const Card = styled.div`
       padding-top: 10px;
       right: 5%;
       font-size: 20px;
-      color: ${(props) => (props.favorite ? 'red' : 'black')};
+      color: ${(props) => (props.favorite ? colors.primary : 'black')};
+      z-index: 999;
+      overflow: hidden;
       &:hover {
-        color: red;
+        color: ${colors.primary};
       }
     }
   }
@@ -33,7 +35,7 @@ const Card = styled.div`
     padding-left: 10px;
     padding-right: 10px;
     h5 {
-      color: ${colors.Gray[500]};
+      color: black;
       margin: 0;
       height: 20px;
       padding-top: 10px;
@@ -44,6 +46,14 @@ const Card = styled.div`
       display: flex;
       justify-content: space-between;
       position: relative;
+      .category {
+        color: ${colors.secondary};
+        font-size: 15px;
+      }
+      .price {
+        color: ${colors.primary};
+        font-size: 15px;
+      }
     }
 
     .opt {
@@ -57,8 +67,10 @@ const Card = styled.div`
         margin-left: auto;
         border-radius: 100%;
         background-color: ${colors.Gray[200]};
+        /* color: ${colors.primary}; */
         &:hover {
-          background-color: ${colors.Gray[300]};
+          background-color: ${colors.hover};
+          color: ${colors.Gray[100]};
         }
       }
     }

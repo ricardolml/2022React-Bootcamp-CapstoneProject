@@ -1,10 +1,11 @@
 import React from 'react';
 import NavBar from './NavBar';
-import { Input } from '../../styles';
+import Search from '../Search/Search';
 import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const navigate = useNavigate();
+
   return (
     <div
       style={{ position: 'fixed', width: '100%', top: '0', zIndex: '99999' }}
@@ -14,7 +15,8 @@ const Header = () => {
           EcoForniture
         </span>
         <div className='content'>
-          <Input type='text' placeholder='Search...' />
+          <Search />
+
           <i className='fa-solid fa-cart-shopping end'> </i>
         </div>
       </NavBar>

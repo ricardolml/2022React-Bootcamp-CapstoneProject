@@ -4,6 +4,7 @@ import { colors } from '../../styles/_variables';
 const NavBar = styled.nav`
   align-items: center;
   /* border-radius: 10px; */
+  justify-content: space-between;
   display: flex;
   flex-flow: row wrap;
   padding: 15px;
@@ -16,16 +17,17 @@ const NavBar = styled.nav`
   }
 
   i:hover {
-    color: ${colors.Green[800]};
+    color: ${colors.hover};
     transition: 0.3s ease;
   }
 
-  div {
+  .content {
     align-items: center;
     display: flex;
+    justify-content: end;
     gap: 20px;
-    margin-left: auto;
-    padding-right: 20px;
+    /* margin-left: auto; */
+    /* padding-right: 20px; */
     width: 60%;
   }
 
@@ -35,8 +37,9 @@ const NavBar = styled.nav`
     padding-right: 8px;
     padding-left: 8px;
 
-    div {
-      gap: 10px;
+    .content {
+      margin-top: 10px;
+      gap: 20px;
       padding-bottom: 10px;
       width: 100%;
     }

@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 const Input = styled.input`
   border: 1px solid #d1d5db;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 10px;
-  width: 100%;
+  width: 98%;
   &:focus {
     outline: none;
     border: 1px solid #9ca3af;

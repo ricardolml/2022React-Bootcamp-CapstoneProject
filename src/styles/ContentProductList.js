@@ -85,7 +85,7 @@ const ContentProductList = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 75vw;
+    width: 75vw !important;
   }
 `;
 export default ContentProductList;

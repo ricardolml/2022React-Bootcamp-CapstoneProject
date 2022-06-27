@@ -7,6 +7,7 @@ const ProductListStyle = styled.div`
     grid-template-columns: 1fr;
     gap: 1rem;
     place-content: center;
+    margin-top: 20px;
   }
 
   .viewAll {
@@ -17,8 +18,8 @@ const ProductListStyle = styled.div`
     justify-content: center;
 
     &:hover {
-      background-color: ${colors.Gray[400]};
-      color: ${colors.Gray[200]};
+      background-color: ${colors.Gray[100]};
+      color: ${colors.primary};
     }
   }
   /* .pagination {
