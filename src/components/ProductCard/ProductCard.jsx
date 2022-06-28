@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Card from './Card';
 import { Link } from 'react-router-dom';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, showDescription }) => {
   const { data: productData } = product;
   const [favorite, setFavorite] = useState(false);
 
@@ -29,12 +29,17 @@ const ProductCard = ({ product }) => {
             {productData.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
           </span>
         </div>
-        <div className='descriptionS'>
-          {`${productData.short_description.substring(0, 150)}... `}
-          <Link to={`/products/${product.id}`} replace className='link'>
-            {`View more`}
-          </Link>
-        </div>
+        {showDescription && (
+          <div className='descriptionS'>
+            <label htmlFor='' className='text'>
+              {`${productData.short_description}... `}
+            </label>
+            <Link to={`/products/${product.id}`} replace className='link'>
+              {`View more`}
+            </Link>
+          </div>
+        )}
+
         <div className='opt'>
           <button type='button' title='add cart'>
             <i className='fa-solid fa-cart-plus'> </i>

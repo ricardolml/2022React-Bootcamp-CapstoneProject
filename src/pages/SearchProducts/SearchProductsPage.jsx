@@ -31,7 +31,11 @@ const SearchProductsPage = () => {
   }
   return (
     <>
-      <ProductList title={`Results of ${q}`} productsList={data} />
+      <ProductList
+        title={`Results of ${q}`}
+        productsList={data}
+        showDescription={true}
+      />
       <div className='pagination'>
         <Pagination numPages={data.total_pages} setPage={setPage} page={page} />
       </div>

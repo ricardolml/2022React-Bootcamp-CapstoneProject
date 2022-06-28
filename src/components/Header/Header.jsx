@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from './NavBar';
 import Search from '../Search/Search';
 import { useNavigate } from 'react-router-dom';
+import IconCart from '../IconCart/IconCart';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const Header = () => {
         <div className='content'>
           <Search />
 
-          <i className='fa-solid fa-cart-shopping end'> </i>
+          <IconCart />
         </div>
       </NavBar>
     </div>

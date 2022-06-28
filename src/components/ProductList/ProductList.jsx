@@ -6,12 +6,12 @@ import ProductCard from '../ProductCard/ProductCard';
 import ProductListStyle from './ProductListStyle';
 import { useNavigate } from 'react-router-dom';
 
-const ProductList = ({ productsList, title, viewAll }) => {
+const ProductList = ({ productsList, title, viewAll, showDescription }) => {
   const navigate = useNavigate();
 
   const products = productsList.results.map((product) => (
     <div key={product.id}>
-      <ProductCard product={product} />
+      <ProductCard product={product} showDescription={showDescription} />
     </div>
   ));
   return (
