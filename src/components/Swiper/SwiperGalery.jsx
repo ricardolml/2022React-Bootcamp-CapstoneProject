@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 
 import SwiperCore, { FreeMode, Navigation, Thumbs } from 'swiper';
@@ -43,6 +45,10 @@ const SwiperGalery = ({ data }) => {
       </Swiper>
     </SwiperGaleryStyle>
   );
+};
+
+SwiperGalery.propTypes = {
+  data: PropTypes.object.isRequired,
 };
 
 export default SwiperGalery;

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 const Category = ({ category }) => {
   const { main_image, name } = category.data;
   return (
@@ -10,6 +10,10 @@ const Category = ({ category }) => {
       </label>
     </>
   );
+};
+
+Category.propTypes = {
+  category: PropTypes.object.isRequired,
 };
 
 export default Category;

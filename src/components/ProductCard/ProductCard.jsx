@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Card from './Card';
 import { Link } from 'react-router-dom';
 
@@ -42,6 +43,10 @@ const ProductCard = ({ product }) => {
       </div>
     </Card>
   );
+};
+
+ProductCard.propTypes = {
+  product: PropTypes.object.isRequired,
 };
 
 export default ProductCard;

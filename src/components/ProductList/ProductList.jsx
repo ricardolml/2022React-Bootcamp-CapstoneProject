@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Card from '../ProductCard/Card';
 import ProductCard from '../ProductCard/ProductCard';
 import ProductListStyle from './ProductListStyle';
@@ -32,4 +34,9 @@ const ProductList = ({ productsList, title, viewAll }) => {
   );
 };
 
+ProductList.propTypes = {
+  productsList: PropTypes.object.isRequired,
+  title: PropTypes.string,
+  viewAll: PropTypes.bool,
+};
 export default ProductList;
