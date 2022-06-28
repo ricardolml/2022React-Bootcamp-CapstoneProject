@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, ContentProductList } from '../../styles';
 import { Loading, ProductList } from '../../components';
 import useCategoriesSelected from '../../utils/hooks/useCategoriesSelected';
@@ -29,6 +29,10 @@ const ProductListPage = () => {
       </li>
     ));
 
+  useEffect(() => {
+    setPage(1);
+  }, [categoriesSelect]);
+
   return (
     <ContentProductList>
       <div className={`slider`}>
@@ -46,7 +50,7 @@ const ProductListPage = () => {
         <h3>Products Lists</h3>
         {isLoading ? (
           <Loading />
-        ) : data.results.length > 0 ? (
+        ) : data.results?.length > 0 ? (
           <div>
             <ProductList productsList={data} setPage={setPage} />
             <div className='pagination'>

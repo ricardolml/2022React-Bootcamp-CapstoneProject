@@ -12,7 +12,7 @@ const PaginationStyle = styled.div`
   font-size: 20px;
   color: ${colors.Gray[500]};
   span:hover {
-    color: ${colors.Gray[800]};
+    color: ${colors.primary};
     cursor: pointer;
     text-decoration: underline;
   }

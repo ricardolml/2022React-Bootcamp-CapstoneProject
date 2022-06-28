@@ -43,7 +43,7 @@ const Card = styled.div`
       padding-bottom: 10px;
     }
 
-    .content {
+    .contentC {
       display: flex;
       justify-content: space-between;
       position: relative;
@@ -76,6 +76,15 @@ const Card = styled.div`
         }
       }
     }
+    .descriptionS {
+      text-align: justify;
+      margin-top: 10px;
+    }
+  }
+
+  .link {
+    text-decoration: none;
+    color: ${colors.primary};
   }
 `;
 

@@ -55,6 +55,11 @@ const ProductListStyle = styled.div`
       grid-template-columns: repeat(4, 1fr);
     }
   }
+  @media (min-width: 1500px) {
+    .content {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
 `;
 
 export default ProductListStyle;

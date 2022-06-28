@@ -21,12 +21,18 @@ const ProductCard = ({ product }) => {
       </div>
       <div className='body'>
         <h5>{productData.name}</h5>
-        <div className='content'>
+        <div className='contentC'>
           <span className='category'> #{productData.category.slug}</span>
           <span className='price'>
             $
             {productData.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
           </span>
+        </div>
+        <div className='descriptionS'>
+          {`${productData.short_description.substring(0, 150)}... `}
+          <Link to={`/products/${product.id}`} replace className='link'>
+            {`View more`}
+          </Link>
         </div>
         <div className='opt'>
           <button type='button' title='add cart'>
