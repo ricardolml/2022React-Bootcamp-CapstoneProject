@@ -6,19 +6,22 @@ import ProductDetailStyle from './ProductDetailStyle';
 import Loading from '../Loading/Loading';
 import Button from '../../styles/Button';
 import SwiperGalery from '../Swiper/SwiperGalery';
+import useProductCart from '../../utils/hooks/useProductCart';
 
 const ProductDetail = () => {
   const { productID } = useParams();
   const { data, isLoading } = useFetch('', null, productID);
   const [count, setCount] = useState(1);
 
+  const { disabled, product: productCart } = useProductCart(productID);
   if (isLoading) {
     return <Loading />;
   }
 
   const { data: product } = data.results[0];
-
-  const handleSum = () => count < product.stock && setCount(count + 1);
+  const productStock = productCart?.stock ?? product.stock;
+  // console.log(productStock);
+  const handleSum = () => count < productStock && setCount(count + 1);
   const handleLess = () => count > 1 && setCount(count - 1);
 
   return (
@@ -59,15 +62,19 @@ const ProductDetail = () => {
             </div>
             <div className='quantity'>
               <label htmlFor=''>Quantity</label>
-              <div className='quantityBtn'>
-                <i className='fa-solid fa-minus' onClick={handleLess}>
-                  {' '}
-                </i>
-                {count}
-                <i className='fa-solid fa-plus' onClick={handleSum}>
-                  {' '}
-                </i>
-              </div>
+              {!disabled ? (
+                <div className='quantityBtn'>
+                  <i className='fa-solid fa-minus' onClick={handleLess}>
+                    {' '}
+                  </i>
+                  {count}
+                  <i className='fa-solid fa-plus' onClick={handleSum}>
+                    {' '}
+                  </i>
+                </div>
+              ) : (
+                'No stock'
+              )}
             </div>
           </div>
           <div className='sectionDetails'>

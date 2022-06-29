@@ -72,7 +72,7 @@ const Card = styled.div`
         border-radius: 100%;
         background-color: ${colors.Gray[200]};
         /* color: ${colors.primary}; */
-        &:hover {
+        &:hover:enabled {
           background-color: ${colors.hover};
           color: ${colors.Gray[100]};
         }

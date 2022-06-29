@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Card from './Card';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import Card from './Card';
+import { addCart } from '../../store/slices/cartSlice';
+import useProductCart from '../../utils/hooks/useProductCart';
+
 const ProductCard = ({ product, showDescription }) => {
+  const dispatch = useDispatch();
+
   const { data: productData } = product;
   const [favorite, setFavorite] = useState(false);
-
+  const { disabled } = useProductCart(product.id);
   const handleChangeFav = () => setFavorite(!favorite);
 
   return (
@@ -41,7 +47,12 @@ const ProductCard = ({ product, showDescription }) => {
         )}
 
         <div className='opt'>
-          <button type='button' title='add cart'>
+          <button
+            type='button'
+            title='add cart'
+            onClick={() => dispatch(addCart(product))}
+            disabled={disabled}
+          >
             <i className='fa-solid fa-cart-plus'> </i>
           </button>
         </div>
@@ -52,6 +63,7 @@ const ProductCard = ({ product, showDescription }) => {
 
 ProductCard.propTypes = {
   product: PropTypes.object.isRequired,
+  showDescription: PropTypes.bool,
 };
 
 export default ProductCard;

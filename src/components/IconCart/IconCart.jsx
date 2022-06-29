@@ -4,7 +4,6 @@ import IconCartStyle from './IconCartStyle';
 
 const IconCart = () => {
   const { numItems } = useSelector((state) => state.cart);
-  console.log(numItems);
   return (
     <IconCartStyle>
       <i className='fa-solid fa-cart-shopping end'> </i>

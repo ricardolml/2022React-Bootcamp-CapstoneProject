@@ -20,6 +20,7 @@ const IconCartStyle = styled.div`
       text-align: center;
       padding: 5px;
       font-size: 13px;
+      /* color: ${colors.primary}; */
       color: white;
       font-weight: bold;
     }
