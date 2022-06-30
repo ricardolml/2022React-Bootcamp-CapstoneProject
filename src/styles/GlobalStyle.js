@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   hr{
-    border: 1px solid ${colors.Orange[100]};
+    border: 1px solid ${colors.Orange[200]};
   }
   button{
     cursor: pointer;

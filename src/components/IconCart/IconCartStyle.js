@@ -10,7 +10,7 @@ const IconCartStyle = styled.div`
   .numCar {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 5px;
     border-radius: 50%;
     background-color: ${colors.primary};
     /* min-width: 22px !important; */
