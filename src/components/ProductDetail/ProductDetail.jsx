@@ -7,12 +7,16 @@ import Loading from '../Loading/Loading';
 import Button from '../../styles/Button';
 import SwiperGalery from '../Swiper/SwiperGalery';
 import useProductCart from '../../utils/hooks/useProductCart';
+import { addCart } from '../../store/slices/cartSlice';
+import { useDispatch } from 'react-redux';
 
 const ProductDetail = () => {
+  const dispatch = useDispatch();
+
   const { productID } = useParams();
   const { data, isLoading } = useFetch('', null, productID);
   const [count, setCount] = useState(1);
-
+  // console.log(data);
   const { disabled, product: productCart } = useProductCart(productID);
   if (isLoading) {
     return <Loading />;
@@ -23,6 +27,11 @@ const ProductDetail = () => {
   // console.log(productStock);
   const handleSum = () => count < productStock && setCount(count + 1);
   const handleLess = () => count > 1 && setCount(count - 1);
+
+  const handleAddCart = () => {
+    dispatch(addCart({ product: data.results[0], numAdd: count }));
+    setCount(1);
+  };
 
   return (
     <ProductDetailStyle>
@@ -62,19 +71,19 @@ const ProductDetail = () => {
             </div>
             <div className='quantity'>
               <label htmlFor=''>Quantity</label>
-              {!disabled ? (
-                <div className='quantityBtn'>
-                  <i className='fa-solid fa-minus' onClick={handleLess}>
-                    {' '}
-                  </i>
-                  {count}
-                  <i className='fa-solid fa-plus' onClick={handleSum}>
-                    {' '}
-                  </i>
-                </div>
-              ) : (
-                'No stock'
-              )}
+              <div className='quantityBtn'>
+                <i className='fa-solid fa-minus' onClick={handleLess}>
+                  {' '}
+                </i>
+                {count}
+                <i className='fa-solid fa-plus' onClick={handleSum}>
+                  {' '}
+                </i>
+              </div>
+            </div>
+            <div className='quantity'>
+              <label htmlFor=''>Stock</label>
+              <span>{productStock}</span>
             </div>
           </div>
           <div className='sectionDetails'>
@@ -100,7 +109,9 @@ const ProductDetail = () => {
               <label htmlFor=''>Total Price</label>
               <span>${product.price * count}</span>
             </div>
-            <Button>Add to Cart</Button>
+            <Button disabled={disabled} onClick={handleAddCart}>
+              Add to Cart
+            </Button>
           </div>
         </div>
       </div>

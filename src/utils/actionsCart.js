@@ -1,22 +1,24 @@
 export const addItem = (state, action) => {
-  const idProduct = action.payload.id;
+  // console.log(action.payload.product);
+  const { id: idProduct, data } = action.payload.product;
+  const numAdd = action.payload.numAdd;
   const index = state.items.findIndex(({ id }) => id === idProduct);
   if (index < 0) {
     state.items.push({
       id: idProduct,
       product: {
-        name: action.payload.data.name,
-        url: action.payload.data.mainimage.url,
+        name: data.name,
+        url: data.mainimage.url,
       },
-      stock: action.payload.data.stock - 1,
-      price: action.payload.data.price,
-      numItems: 1,
+      stock: data.stock - numAdd,
+      price: data.price,
+      numItems: numAdd,
     });
   } else {
-    state.items[index].numItems += 1;
-    state.items[index].stock -= 1;
+    state.items[index].numItems += numAdd;
+    state.items[index].stock -= numAdd;
   }
-  state.numItems += 1;
+  state.numItems += numAdd;
 
   return state;
 };

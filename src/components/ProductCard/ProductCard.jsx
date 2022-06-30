@@ -50,7 +50,7 @@ const ProductCard = ({ product, showDescription }) => {
           <button
             type='button'
             title='add cart'
-            onClick={() => dispatch(addCart(product))}
+            onClick={() => dispatch(addCart({ product, numAdd: 1 }))}
             disabled={disabled}
           >
             <i className='fa-solid fa-cart-plus'> </i>

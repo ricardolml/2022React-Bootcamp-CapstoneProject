@@ -17,7 +17,7 @@ export function useLatestAPI() {
           signal: controller.signal,
         });
         const { refs: [{ ref } = {}] = [] } = await response.json();
-        console.log(ref)
+        // console.log(ref)
         setApiMetadata({ ref, isLoading: false });
       } catch (err) {
         setApiMetadata({ ref: null, isLoading: false });
