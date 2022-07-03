@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useFetch } from '../../utils/hooks/useFetch';
-import ProductDetailStyle from './ProductDetailStyle';
+import ProductDetailStyle from './ProductDetail.style';
 
 import Loading from '../Loading/Loading';
 import Button from '../../styles/Button';
@@ -11,6 +11,8 @@ import useProductCart from '../../utils/hooks/useProductCart';
 import { addCart } from '../../store/slices/cartSlice';
 import QuantityButton from '../QuantityButton/QuantityButton';
 import useQuantity from '../../utils/hooks/useQuantity';
+import { startLoading } from '../../store/slices/uiSlice';
+import Alert from '../Alert/Alert';
 
 const ProductDetail = () => {
   const dispatch = useDispatch();
@@ -30,11 +32,18 @@ const ProductDetail = () => {
 
   const handleAddCart = () => {
     dispatch(addCart({ product: data.results[0], numAdd: count }));
+    dispatch(
+      startLoading({
+        title: 'Product added to the cart',
+        message: `Product added:  ${product.name}`,
+      })
+    );
     handleReset();
   };
 
   return (
     <ProductDetailStyle>
+      <Alert />
       <div className='content'>
         <div className='slider'>
           <div className='sliderImg'>

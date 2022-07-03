@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Card from '../ProductCard/Card';
+import Card from '../ProductCard/ProductCard.style';
 import ProductCard from '../ProductCard/ProductCard';
-import ProductListStyle from './ProductListStyle';
+import ProductListStyle from './ProductList.style';
 import { useNavigate } from 'react-router-dom';
+import Alert from '../Alert/Alert';
 
 const ProductList = ({ productsList, title, viewAll, showDescription }) => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const ProductList = ({ productsList, title, viewAll, showDescription }) => {
     <ProductListStyle>
       <h2>{title}</h2>
       <hr />
+      <Alert />
       <div className='content'>
         {products}
         {viewAll && (

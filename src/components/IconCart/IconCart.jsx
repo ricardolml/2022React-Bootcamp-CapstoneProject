@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import IconCartStyle from './IconCartStyle';
+import IconCartStyle from './IconCart.style';
 
 const IconCart = () => {
   const { numItems } = useSelector((state) => state.cart);

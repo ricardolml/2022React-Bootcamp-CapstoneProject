@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateNumsItemCar } from '../../store/slices/cartSlice';
+import { updateNumsItemCar, deleteItem } from '../../store/slices/cartSlice';
+import { startLoading } from '../../store/slices/uiSlice';
 import useQuantity from '../../utils/hooks/useQuantity';
 import QuantityButton from '../QuantityButton/QuantityButton';
 
@@ -23,20 +24,19 @@ const ItemTableCart = ({ product }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
-
+  const handleDetele = () => {
+    dispatch(
+      startLoading({
+        title: 'Product deleted from the cart',
+        message: `The product ${product.product.name} deleted`,
+      })
+    );
+    dispatch(deleteItem(product));
+  };
   return (
     <div>
       <h4>{product.product.name}</h4>
-      <div
-        style={{
-          display: 'flex',
-          gap: '30px',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          textAlign: 'center',
-          borderBottom: '1px solid orange',
-        }}
-      >
+      <div className='itemPrice'>
         <img src={product.product.url} alt='' width='100px' />
         <QuantityButton
           price={product.price}
@@ -48,7 +48,7 @@ const ItemTableCart = ({ product }) => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
           <label htmlFor=''>Total</label> ${product.price * count}
         </div>
-        <div>
+        <div className='deteleItem' onClick={handleDetele}>
           <i className='fa-solid fa-trash-can'> </i>
         </div>
       </div>

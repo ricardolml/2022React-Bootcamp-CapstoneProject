@@ -1,3 +1,4 @@
+export { default as Alert } from './Alert/Alert';
 export { default as Carrusel } from './Carrusel/Carrusel';
 export { default as Category } from './Category/Category';
 export { default as Footer } from './Footer/Footer';

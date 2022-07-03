@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Card from './Card';
 import { addCart } from '../../store/slices/cartSlice';
 import useProductCart from '../../utils/hooks/useProductCart';
+import Card from './ProductCard.style';
+import { startLoading } from '../../store/slices/uiSlice';
 
 const ProductCard = ({ product, showDescription }) => {
   const dispatch = useDispatch();
@@ -14,6 +15,15 @@ const ProductCard = ({ product, showDescription }) => {
   const [favorite, setFavorite] = useState(false);
   const { disabled } = useProductCart(product.id);
   const handleChangeFav = () => setFavorite(!favorite);
+  const handleAddtoCart = () => {
+    dispatch(addCart({ product, numAdd: 1 }));
+    dispatch(
+      startLoading({
+        title: 'Product added to the cart',
+        message: `Product added:  ${productData.name}`,
+      })
+    );
+  };
 
   return (
     <Card favorite={favorite} className='card'>
@@ -50,7 +60,7 @@ const ProductCard = ({ product, showDescription }) => {
           <button
             type='button'
             title='add cart'
-            onClick={() => dispatch(addCart({ product, numAdd: 1 }))}
+            onClick={handleAddtoCart}
             disabled={disabled}
           >
             <i className='fa-solid fa-cart-plus'> </i>

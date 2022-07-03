@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import SliderStyle from './SliderStyle';
+import SliderStyle from './Slider.style';
 import Category from '../Category/Category';
 import { useFetch } from '../../utils/hooks/useFetch';
 

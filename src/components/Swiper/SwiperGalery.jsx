@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 import SwiperCore, { FreeMode, Navigation, Thumbs } from 'swiper';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
-import SwiperGaleryStyle from './SwiperGaleryStyle';
+import SwiperGaleryStyle from './SwiperGalery.style';
 // install Swiper modules
 SwiperCore.use([FreeMode, Navigation, Thumbs]);
 

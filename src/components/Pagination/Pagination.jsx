@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PaginationStyle from './PaginationStyle';
+import PaginationStyle from './Pagination.style';
 
 const Pagination = ({ numPages, page, setPage }) => {
   const handleChangePage = (e) => {

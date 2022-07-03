@@ -1,5 +1,5 @@
 import React from 'react';
-import QuantityButtonStyle from './QuantityButtonStyle';
+import QuantityButtonStyle from './QuantityButton.style';
 
 const QuantityButton = ({
   count,

@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Input } from '../../styles';
 import { useFetch } from '../../utils/hooks/useFetch';
-import SearchStyle from './SearchStyle';
+import SearchStyle from './Search.style';
 
 const initialState = {
   type: null,
