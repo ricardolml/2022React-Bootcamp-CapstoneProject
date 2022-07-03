@@ -5,7 +5,7 @@ import { Button } from '../../styles';
 import AlertStyle from './Alert.style';
 
 const Alert = () => {
-  const { isLoading, messaje, title } = useSelector((state) => state.ui);
+  const { isLoading, messaje, title, icon } = useSelector((state) => state.ui);
   const dispatch = useDispatch();
   if (!isLoading) {
     return <></>;
@@ -14,7 +14,10 @@ const Alert = () => {
   return (
     <AlertStyle>
       <div className='alert'>
-        <h3>{title}</h3>
+        <h3 style={{ textAlign: 'center' }}>{title}</h3>
+        <div style={{ textAlign: 'center' }}>
+          <i className={`${icon} fa-3x`}> </i>
+        </div>
         <hr />
         <p>{messaje}</p>
         <Button onClick={() => dispatch(stoptLoading())}>Ok</Button>

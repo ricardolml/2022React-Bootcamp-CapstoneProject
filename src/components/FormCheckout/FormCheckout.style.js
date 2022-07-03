@@ -30,6 +30,10 @@ const FormCheckoutStyle = styled.div`
       }
     }
     margin-bottom: 15px;
+    .error {
+      font-size: 12px;
+      color: ${colors.Red[500]};
+    }
   }
 
   @media (max-width: 800px) {

@@ -21,6 +21,7 @@ const ProductCard = ({ product, showDescription }) => {
       startLoading({
         title: 'Product added to the cart',
         message: `Product added:  ${productData.name}`,
+        icon: 'fa-solid fa-clipboard-check',
       })
     );
   };

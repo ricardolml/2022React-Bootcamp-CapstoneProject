@@ -36,6 +36,7 @@ const ProductDetail = () => {
       startLoading({
         title: 'Product added to the cart',
         message: `Product added:  ${product.name}`,
+        icon: 'fa-solid fa-clipboard-check',
       })
     );
     handleReset();

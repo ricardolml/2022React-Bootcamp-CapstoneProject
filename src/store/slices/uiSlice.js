@@ -4,6 +4,7 @@ const initialState = {
   isLoading: false,
   title: '',
   messaje: '',
+  icon: '',
 };
 export const ui = createSlice({
   name: 'ui',
@@ -13,13 +14,11 @@ export const ui = createSlice({
       state.isLoading = true;
       state.title = action.payload.title;
       state.messaje = action.payload.message;
+      state.icon = action.payload.icon;
       return state;
     },
     stoptLoading: (state) => {
-      state.isLoading = false;
-      state.title = '';
-      state.messaje = '';
-      return state;
+      return initialState;
     },
   },
 });

@@ -9,6 +9,9 @@ import TableDetailCartStyle from './TableDetailCart.style';
 const TableDetailCart = () => {
   const { items, numItems } = useSelector((store) => store.cart);
   let total = 0;
+  if (items.length === 0) {
+    return <div style={{ padding: '30px' }}>Your cart is empty</div>;
+  }
   return (
     <TableDetailCartStyle
       style={{ display: 'flex', gap: '20px', flexFlow: 'row wrap' }}

@@ -32,7 +32,10 @@ export const cartSlice = createSlice({
       return state;
     },
     resetCart: (state, action) => {
-      return state;
+      return {
+        items: [],
+        numItems: 0,
+      };
     },
   },
 });

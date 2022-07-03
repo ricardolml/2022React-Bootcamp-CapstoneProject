@@ -23,6 +23,10 @@ const TableDetailCartStyle = styled.div`
       }
     }
   }
+  .empty {
+    padding: 30px;
+    color: ${colors.Red[300]};
+  }
   .descriptionCart {
     width: 38%;
     /* max-height: 550px; */

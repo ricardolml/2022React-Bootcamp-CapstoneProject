@@ -29,6 +29,7 @@ const ItemTableCart = ({ product }) => {
       startLoading({
         title: 'Product deleted from the cart',
         message: `The product ${product.product.name} deleted`,
+        icon: 'fa-solid fa-trash',
       })
     );
     dispatch(deleteItem(product));
