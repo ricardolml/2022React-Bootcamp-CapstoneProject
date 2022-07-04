@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { updateNumsItemCar, deleteItem } from '../../store/slices/cartSlice';
 import { startLoading } from '../../store/slices/uiSlice';
@@ -28,7 +29,7 @@ const ItemTableCart = ({ product }) => {
     dispatch(
       startLoading({
         title: 'Product deleted from the cart',
-        message: `The product ${product.product.name} deleted`,
+        message: `The product "${product.product.name}" deleted`,
         icon: 'fa-solid fa-trash',
       })
     );
@@ -38,7 +39,9 @@ const ItemTableCart = ({ product }) => {
     <div>
       <h4>{product.product.name}</h4>
       <div className='itemPrice'>
-        <img src={product.product.url} alt='' width='100px' />
+        <Link to={`/products/${product.id}`} replace>
+          <img src={product.product.url} alt='' width='100px' />
+        </Link>
         <QuantityButton
           price={product.price}
           handleLess={handleLess}

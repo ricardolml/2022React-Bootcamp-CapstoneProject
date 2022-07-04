@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import QuantityButtonStyle from './QuantityButton.style';
 
 const QuantityButton = ({
@@ -32,6 +34,14 @@ const QuantityButton = ({
       </div>
     </QuantityButtonStyle>
   );
+};
+
+QuantityButton.propTypes = {
+  count: PropTypes.number.isRequired,
+  handleLess: PropTypes.func.isRequired,
+  handleSum: PropTypes.func.isRequired,
+  price: PropTypes.number.isRequired,
+  productStock: PropTypes.number.isRequired,
 };
 
 export default QuantityButton;

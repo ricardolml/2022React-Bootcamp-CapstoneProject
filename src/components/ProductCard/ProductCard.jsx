@@ -20,7 +20,7 @@ const ProductCard = ({ product, showDescription }) => {
     dispatch(
       startLoading({
         title: 'Product added to the cart',
-        message: `Product added:  ${productData.name}`,
+        message: `Product added:  "${productData.name}"`,
         icon: 'fa-solid fa-clipboard-check',
       })
     );

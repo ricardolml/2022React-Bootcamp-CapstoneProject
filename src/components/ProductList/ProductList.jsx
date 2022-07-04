@@ -40,5 +40,6 @@ ProductList.propTypes = {
   productsList: PropTypes.object.isRequired,
   title: PropTypes.string,
   viewAll: PropTypes.bool,
+  showDescription: PropTypes.bool,
 };
 export default ProductList;

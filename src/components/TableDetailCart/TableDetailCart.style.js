@@ -4,6 +4,8 @@ import { colors } from '../../styles/_variables';
 const TableDetailCartStyle = styled.div`
   .itemsTable {
     width: 60%;
+    overflow-y: scroll;
+    height: 70vh;
     .itemPrice {
       display: flex;
       gap: 30px;
@@ -63,6 +65,15 @@ const TableDetailCartStyle = styled.div`
     }
     .descriptionCart {
       width: 100%;
+    }
+  }
+  @media (max-width: 400px) {
+    .itemsTable {
+      .itemPrice {
+        font-size: 12px;
+        justify-content: center;
+        padding-bottom: 50px;
+      }
     }
   }
 `;

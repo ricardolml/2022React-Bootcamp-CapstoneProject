@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { Input } from '../../styles';
 import FormCheckoutStyle from './FormCheckout.style';
 
@@ -65,6 +67,11 @@ const FormCheckout = ({ register, errors }) => {
       </form>
     </FormCheckoutStyle>
   );
+};
+
+FormCheckout.propTypes = {
+  register: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 export default FormCheckout;

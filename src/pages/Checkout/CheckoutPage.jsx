@@ -43,7 +43,7 @@ const Checkout = () => {
   return (
     <CheckoutContend>
       <Alert />
-      <h2>Check Outtt</h2>
+      <h2>Check Out</h2>
       <div style={{ width: '200px' }}>
         <Link to='/cart' replace>
           <Button style={{ width: '100%' }}>
