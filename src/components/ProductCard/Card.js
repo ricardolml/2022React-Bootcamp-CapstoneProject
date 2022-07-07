@@ -1,42 +1,91 @@
-import styled from "styled-components";
-import { colors } from "../../styles/_variables";
+import styled from 'styled-components';
+import { colors } from '../../styles/_variables';
 
-
-const Card =  styled.div`
-    border: 1px solid ${colors.Gray[300]} ;
-    border-radius: 5px;
-    box-shadow: 0px;
-    box-shadow: 5px 5px 5px ${colors.Gray[200]};
-    position: relative;
-    max-width: 200px;
+const Card = styled.div`
+  border: 1px solid ${colors.Gray[300]};
+  border-radius: 5px;
+  box-shadow: 0px;
+  box-shadow: 5px 5px 5px ${colors.Gray[200]};
+  background-position: center center;
+  width: 100%;
+  height: 100%;
+  .img {
     cursor: pointer;
-    img{
-        border-radius: 5px;
-        position: relative;
-        display: flex;
-        width: 100%;
-        object-fit: cover;
+    position: relative;
+    .fav {
+      position: absolute;
+      padding-top: 10px;
+      right: 5%;
+      font-size: 20px;
+      color: ${(props) => (props.favorite ? colors.primary : 'black')};
+      z-index: 999;
+      overflow: hidden;
+      &:hover {
+        color: ${colors.primary};
+      }
+    }
+  }
+  img {
+    width: 100%;
+    object-fit: cover;
+    /* max-height: 280px; */
+    border-radius: 5px;
+  }
+
+  .body {
+    padding-left: 10px;
+    padding-right: 10px;
+    h5 {
+      color: black;
+      margin: 0;
+      height: 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
 
-    .body{
-        padding-left: 10px;
-        padding-right: 10px;
-
-        h5{
-            color: ${ colors.Gray[500] };
-            height: 25px;
-        }
-        .category{
-            color: ${ colors.Gray[400] };
-        }
-        
-        .content{
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-            bottom: 15px;
-        }
+    .contentC {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      .category {
+        color: ${colors.secondary};
+        font-size: 15px;
+      }
+      .price {
+        color: ${colors.primary};
+        font-size: 15px;
+      }
     }
+
+    .opt {
+      display: flex;
+      width: 100%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      button {
+        width: 50px;
+        height: 50px;
+        border: 1px solid ${colors.Gray[100]};
+        margin-left: auto;
+        border-radius: 100%;
+        background-color: ${colors.Gray[200]};
+        /* color: ${colors.primary}; */
+        &:hover {
+          background-color: ${colors.hover};
+          color: ${colors.Gray[100]};
+        }
+      }
+    }
+    .descriptionS {
+      text-align: justify;
+      margin-top: 10px;
+    }
+  }
+
+  .link {
+    text-decoration: none;
+    color: ${colors.primary};
+  }
 `;
 
 export default Card;

@@ -1,24 +1,52 @@
-import React from 'react'
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Card from './Card';
-
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
-    const { data: productData } = product;
+  const { data: productData } = product;
+  const [favorite, setFavorite] = useState(false);
 
-    return (
-        <Card>
-            <img src={productData.mainimage.url} alt="" />
-            <div className='body'>
-                <h5>{productData.name}</h5>
-                <div className='content'>
-                    <h6 className='category'> #{productData.category.slug}</h6>
-                    <h6 className='price'>
-                        $ {productData.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                    </h6>
-                </div>
-            </div>
-        </Card>
-    )
-}
+  const handleChangeFav = () => setFavorite(!favorite);
 
-export default ProductCard
+  return (
+    <Card favorite={favorite} className='card'>
+      <div className='img'>
+        <i
+          className={`${!favorite ? 'fa-regular' : 'fa-solid'} fa-heart fav `}
+          onClick={handleChangeFav}
+        />
+        <Link to={`/products/${product.id}`} replace>
+          <img src={productData.mainimage.url} alt='' />
+        </Link>
+      </div>
+      <div className='body'>
+        <h5>{productData.name}</h5>
+        <div className='contentC'>
+          <span className='category'> #{productData.category.slug}</span>
+          <span className='price'>
+            $
+            {productData.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          </span>
+        </div>
+        <div className='descriptionS'>
+          {`${productData.short_description.substring(0, 150)}... `}
+          <Link to={`/products/${product.id}`} replace className='link'>
+            {`View more`}
+          </Link>
+        </div>
+        <div className='opt'>
+          <button type='button' title='add cart'>
+            <i className='fa-solid fa-cart-plus'> </i>
+          </button>
+        </div>
+      </div>
+    </Card>
+  );
+};
+
+ProductCard.propTypes = {
+  product: PropTypes.object.isRequired,
+};
+
+export default ProductCard;

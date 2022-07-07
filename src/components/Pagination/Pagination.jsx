@@ -1,20 +1,51 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import PaginationStyle from './PaginationStyle';
 
-const Pagination = ({ numPages }) => {
-    const element = [];
-    for (let i = 1; i < numPages; i++) {
-        element.push((
-            <li key={i} >{i}</li>
-        ))
-    }
+const Pagination = ({ numPages, page, setPage }) => {
+  const handleChangePage = (e) => {
+    const num = parseInt(e.target.value);
+    setPage(num);
+  };
+  const handlePrevious = () => {
+    setPage(page - 1);
+  };
+  const handleNext = () => {
+    setPage(page + 1);
+  };
+  return (
+    <PaginationStyle>
+      <div>
+        {page > 1 && (
+          <span onClick={handlePrevious}>
+            <i className='fa-solid fa-arrow-left-long'> </i> Previous
+          </span>
+        )}
+      </div>
+      <div className='page'>
+        <label htmlFor=''>Page</label>
+        <select value={page} onChange={handleChangePage}>
+          {[...Array(numPages)].map((e, i) => (
+            <option key={i}>{i + 1}</option>
+          ))}
+        </select>
+        <label htmlFor=''>of {numPages}</label>
+      </div>
+      <div>
+        {page < numPages && (
+          <span onClick={handleNext}>
+            Next <i className='fa-solid fa-arrow-right-long'> </i>
+          </span>
+        )}
+      </div>
+    </PaginationStyle>
+  );
+};
 
-    return (
-        <PaginationStyle>
-            {element}
-            <li>Next</li>
-        </PaginationStyle>
-    )
-}
+Pagination.propTypes = {
+  numPages: PropTypes.number.isRequired,
+  page: PropTypes.number.isRequired,
+  setPage: PropTypes.func.isRequired,
+};
 
-export default Pagination
+export default Pagination;
