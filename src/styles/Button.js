@@ -9,7 +9,10 @@ export const Button = styled.button`
   border: none;
   color: white;
   background-color: ${colors.primary};
-  &:hover {
+  &:disabled {
+    background-color: ${colors.Orange[300]};
+  }
+  &:hover:enabled {
     background-color: ${colors.hover};
   }
 `;

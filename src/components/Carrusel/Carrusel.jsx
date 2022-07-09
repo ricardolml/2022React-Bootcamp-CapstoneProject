@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useFeaturedBanners } from '../../utils/hooks/useFeaturedBanners';
-import CarruselStyle from './CarruselStyle';
+import CarruselStyle from './Carrusel.style';
 
 const Carrusel = () => {
   const { data } = useFeaturedBanners();

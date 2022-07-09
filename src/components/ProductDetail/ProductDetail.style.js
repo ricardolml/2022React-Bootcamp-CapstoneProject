@@ -70,6 +70,7 @@ const ProductDetailStyle = styled.div`
         border-radius: 10px;
         background-color: ${colors.Gray[200]};
         display: flex;
+        width: auto;
         align-items: center;
         gap: 20px;
       }

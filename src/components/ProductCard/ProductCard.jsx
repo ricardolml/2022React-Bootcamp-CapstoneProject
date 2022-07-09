@@ -1,13 +1,30 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Card from './Card';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const ProductCard = ({ product }) => {
+import { addCart } from '../../store/slices/cartSlice';
+import useProductCart from '../../utils/hooks/useProductCart';
+import Card from './ProductCard.style';
+import { startLoading } from '../../store/slices/uiSlice';
+
+const ProductCard = ({ product, showDescription }) => {
+  const dispatch = useDispatch();
+
   const { data: productData } = product;
   const [favorite, setFavorite] = useState(false);
-
+  const { disabled } = useProductCart(product.id);
   const handleChangeFav = () => setFavorite(!favorite);
+  const handleAddtoCart = () => {
+    dispatch(addCart({ product, numAdd: 1 }));
+    dispatch(
+      startLoading({
+        title: 'Product added to the cart',
+        message: `Product added:  "${productData.name}"`,
+        icon: 'fa-solid fa-clipboard-check',
+      })
+    );
+  };
 
   return (
     <Card favorite={favorite} className='card'>
@@ -29,14 +46,24 @@ const ProductCard = ({ product }) => {
             {productData.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
           </span>
         </div>
-        <div className='descriptionS'>
-          {`${productData.short_description.substring(0, 150)}... `}
-          <Link to={`/products/${product.id}`} replace className='link'>
-            {`View more`}
-          </Link>
-        </div>
+        {showDescription && (
+          <div className='descriptionS'>
+            <label htmlFor='' className='text'>
+              {`${productData.short_description}... `}
+            </label>
+            <Link to={`/products/${product.id}`} replace className='link'>
+              {`View more`}
+            </Link>
+          </div>
+        )}
+
         <div className='opt'>
-          <button type='button' title='add cart'>
+          <button
+            type='button'
+            title='add cart'
+            onClick={handleAddtoCart}
+            disabled={disabled}
+          >
             <i className='fa-solid fa-cart-plus'> </i>
           </button>
         </div>
@@ -47,6 +74,7 @@ const ProductCard = ({ product }) => {
 
 ProductCard.propTypes = {
   product: PropTypes.object.isRequired,
+  showDescription: PropTypes.bool,
 };
 
 export default ProductCard;
